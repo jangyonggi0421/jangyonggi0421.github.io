@@ -50,13 +50,13 @@
     <p>
       1) VS Code의 Extension(Ctrl+Shift+X)을 실행하고 검색창에 korean 입력
       <div style="text-align: center;">
-        <img width="1915" height="1032" alt="image" src="https://github.com/user-attachments/assets/db59b4d0-06b1-426f-aebd-84c2e3e3b84e" />
+        <img width="1000" height="800" alt="image" src="https://github.com/user-attachments/assets/db59b4d0-06b1-426f-aebd-84c2e3e3b84e" />
       </div>  
     </p>
     <p>
       2) install 클릭<br/>
       3) Change Language and Restart 클릭
       <div style="text-align: center;">
-        <img width="1919" height="1034" alt="image" src="https://github.com/user-attachments/assets/4d203acd-eb00-47b6-89f5-2585ba09f1c1" />
+        <img width="1000" height="800" alt="image" src="https://github.com/user-attachments/assets/4d203acd-eb00-47b6-89f5-2585ba09f1c1" />
       </div>  
     </p>
