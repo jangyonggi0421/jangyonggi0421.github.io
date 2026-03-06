@@ -1,0 +1,166 @@
+<!-- HTML 태그 예제 -->
+<!DOCTYPE html> <!-- 문서 유형 선언: HTML5 문서임을 명시 --> <!-- 표준 모드(standards mode)로 렌더링 -->    
+<html lang="ko"> <!-- 문서의 언어를 한국어(ko)로 설정 -->
+<head> <!-- 문서의 메타데이터(데이터에 대한 데이터)를 포함하는 헤드 섹션 시작 -->
+<!-- 1. 문서 정보 제공(페이지의 제목, 문자 인코딩 설정, 페이지 설명 등 명시)
+     2. 리소스 연결 : CSS, JavaScript, Web Fonts 등 외부 리소스를 불러옴
+     3. 검색 엔진 최적화(SEO) : 검색 엔진에 노출될 키워드나 설명을 설정하여 검색 결과에 영향을 줌 -->
+<!-- 포함되는 주요 태그
+     <meta> : 문자 인코딩<meta charset="UTF-8">, 뷰포트 설정, 제작자 정보, SEO 메타데이터 등 정의,
+     <title> : 페이지 제목 정의,
+     <link> : CSS, JavaScript 등 외부 리소스 연결, 
+     <script> : JavaScript 코드 포함, 
+     <style> : CSS 스타일 정의
+-->
+    <meta charset="UTF-8"> <!-- 문자 인코딩 설정: UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 뷰포트 설정 -->
+    <!-- 다양한 기기의 화면 크기에 맞춰 조정 -->
+    <!-- name="viewport" : 뷰포트 설정(사용자가 웹사이트를 보는 가시 영역) -->
+    <!-- width=device-width : 디바이스의 너비에 맞춰 뷰포트 너비 조정 -->
+    <!-- initial-scale=1.0 : 초기 확대/축소 비율 설정(1.0은 원래 크기, 1:1(100%)) -->
+    <title>HTML 태그 종합 백과사전</title> <!-- 페이지 제목 설정 -->
+    <!-- 내부 CSS 스타일 정의 -->
+    <style> 
+        body { font-family: sans-serif; line-height: 1.6; padding: 20px; }
+        section { border: 1px solid #ddd; padding: 15px; margin-bottom: 20px; }
+        header, footer { background: #f4f4f4; padding: 10px; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+    </style>
+</head>
+<body>
+<!-- 문서의 본문 내용이 들어가는 바디 섹션 시작 -->
+<!-- 1. 시각적 요소의 컨테이너 : 글자, 그림, 하이퍼링크, 표, 양식 등이 모두 이 안에 들어감.
+     2. 위치 : <body> 태그는 <head> 태그가 끝난 직후에 시작하여 </html> 태그 직전에 끝남.
+     3. 브라우저 표시 : 사용자가 웹페이지를 볼 때 실제로 보게 되는 모든 콘텐츠가 이 안에 포함됨.
+     4. 주요 태그
+        <header> : 문서나 섹션의 머리글(헤더) 정의,
+        <nav> : 내비게이션 링크 모음 정의,
+        <main> : 문서의 주요 콘텐츠 정의,
+        <section> : 문서의 구획(섹션) 정의,
+        <article> : 독립적인 콘텐츠 블록 정의,
+        <aside> : 본문과 간접적으로 관련된 콘텐츠 정의,
+        <footer> : 문서나 섹션의 바닥글(푸터) 정의    
+--> 
+    <header> <!-- 문서의 헤더 섹션 시작 -->
+        <h1>HTML5 핵심 태그 가이드</h1> <!-- 최상위 제목 -->
+        <nav> <!-- 내비게이션 섹션 시작 -->
+            <ul> <!-- 순서 없는 목록 시작 -->
+                <li><a href="#text">텍스트 요소</a></li> <!-- 목록 항목 --> 
+                <li><a href="#list">목록 및 표</a></li> <!-- 목록 항목 -->
+                <li><a href="#media">미디어 요소</a></li> <!-- 목록 항목 --> 
+                <li><a href="#form">입력 양식</a></li>
+            </ul> <!-- 순서 없는 목록 끝 -->
+        </nav> <!-- 내비게이션 섹션 끝 -->
+    </header>   
+
+    <main> <!-- 문서의 주요 콘텐츠 섹션 시작 -->
+        <section id="text"> <!-- 텍스트 요소 섹션 시작 -->
+            <h2>1. 텍스트 및 그룹화 요소</h2> <!-- 두 번째 수준 제목 -->
+            <article> <!-- 독립적인 콘텐츠 블록 시작 -->
+                <h3>문장 내 강조 및 형식</h3> <!-- 세 번째 수준 제목 -->
+                <p>이것은 <b>굵은 글씨(b)</b>이며, 이것은 <strong>중요한 강조(strong)</strong>입니다.</p> <!-- 단락 --> <!-- <p> : 단락 태그, <b> : 굵은 글씨 태그, <strong> : 강조 태그 -->
+                <p><i>기울임꼴(i)</i>과 <em>강조(em)</em>, 그리고 <mark>하이라이트(mark)</mark> 표시입니다.</p> <!-- 단락 --> <!-- <i> : 기울임꼴 태그, <em> : 강조 태그, <mark> : 하이라이트 태그 -->
+                <p>수식 표현: H<sub>2</sub>O (아래 첨자), E=mc<sup>2</sup> (위 첨자)</p> <!-- 단락 --> <!-- <sub> : 아래 첨자 태그, <sup> : 위 첨자 태그 -->
+                <p>줄 바꿈 예시:<br>이 문장은 줄 바꿈 후에 이어집니다.</p> <!-- 단락 --> <!-- <br> : 줄 바꿈 태그 -->        
+                <blockquote> <!-- 인용문 블록 시작 -->
+                    "이것은 인용문을 나타내는 blockquote 태그입니다."
+                </blockquote>
+                <pre> <!-- 서식 있는 텍스트 블록 시작 -->
+                    <code> <!-- 코드 블록 시작 -->  
+                        function hello() {
+                            console.log("Hello HTML!");
+                        }
+                    </code> <!-- 코드 블록 끝 -->
+                </pre>  <!-- 서식 있는 텍스트 블록 끝 -->
+            </article> <!-- 독립적인 콘텐츠 블록 끝 -->
+        </section> <!-- 텍스트 요소 섹션 끝 -->
+
+        <section id="list"> <!-- 목록 및 데이터 표 섹션 시작 -->             
+            <h2>2. 목록 및 데이터 표</h2> <!-- 두 번째 수준 제목 -->   
+            <ul><!-- 순서 없는 목록 시작 -->    
+                <li>순서 없는 목록 (ul-li)</li>
+            </ul>
+            <ol>
+                <li>순서 있는 목록 (ol-li)</li>
+            </ol>
+            <dl>
+                <dt>용어 정의 (dt)</dt>
+                <dd>용어에 대한 설명 (dd)</dd>
+            </dl>
+
+            <table>
+                <caption>학습 진도표</caption>
+                <thead>
+                    <tr>
+                        <th>과목</th>
+                        <th>상태</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>HTML</td>
+                        <td>완료</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="media">
+            <h2>3. 임베디드 및 미디어</h2>
+            <figure>
+                <img src="https://via.placeholder.com/150" alt="샘플 이미지">
+                <figcaption>그림 1. 샘플 이미지 설명</figcaption>
+            </figure>
+            
+            <p>오디오 및 비디오 요소:</p>
+            <audio controls src="#"></audio>
+            <video width="320" height="240" controls></video>
+        </section>
+
+        <section id="form">
+            <h2>4. 입력 양식 (Form)</h2>
+            <form action="/submit" method="post">
+                <fieldset>
+                    <legend>개인 정보</legend>
+                    <label for="name">이름:</label>
+                    <input type="text" id="name" name="name" placeholder="이름 입력"><br><br>
+
+                    <label for="color">좋아하는 색상:</label>
+                    <input type="color" id="color"><br><br>
+
+                    <label>관심 분야:</label>
+                    <input type="checkbox" id="coding" checked> <label for="coding">코딩</label>
+                    <input type="radio" id="male" name="gender"> <label for="male">남성</label><br><br>
+
+                    <select>
+                        <option value="1">옵션 1</option>
+                        <option value="2">옵션 2</option>
+                    </select><br><br>
+
+                    <textarea rows="4" cols="30">메시지를 남겨주세요.</textarea><br>
+                    
+                    <button type="submit">전송하기</button>
+                </fieldset>
+            </form>
+        </section>
+
+        <section>
+            <h2>5. 기타 및 대화형 요소</h2>
+            <details>
+                <summary>여기를 클릭하여 상세 내용 보기</summary>
+                <p>상세 설명이 나타납니다 (details & summary 태그).</p>
+            </details>
+            <progress value="70" max="100"></progress> 70% 진행
+        </section>
+    </main>
+
+    <footer>
+        <a href="https://hits.seeyoufarm.com">
+            <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https://jangyonggi0421.github.io&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=visits&edge_flat=false"/>
+        </a>
+    </footer>
+
+</body>
+</html>
