@@ -1,89 +1,153 @@
 <!DOCTYPE html>
-  <html lang="ko">
-    <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!-- Google tag (gtag.js) -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-D1LHM7F3NE"></script>
-        <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-D1LHM7F3NE');
-        </script> 
-      <title>Visual Studio Code 설치(Windows 기준)</title>
-      <style>
-        .center-image {
-          display: block;          /* 블록 요소로 변경 */
-          margin: 0 auto;          /* 좌우 자동 마진 → 가운데 정렬 */
-          height: auto;            /* 비율 유지하며 높이 자동 조절 */
-          border: 2px solid black; /* 테두리 두께와 색상 */
-        }
-        .container {
-          width: 1200px;
-          border: 2px solid black;
-          padding: 20px;
-          text-align: center;
-        }
-      </style>
-    </head>
-    <body>
-      <div class="container">
-        <h1>Visual Studio Code(Windows) 설치</h1>
-          <p> 1. 설치 파일 다운로드 : https://code.visualstudio.com/
-            <div style="text-align: center;">
-              <img src="https://github.com/user-attachments/assets/a8f2f189-c9b4-46e5-99cd-db7e7b739f60" width="600" height="400" alt="VS Code 설치 파일 다운로드" class="center-image"/>
-            </div>
-          </p>  
-          <p> 2. 설치파일 실행 후 [동의합니다] 선택하고 [다음] 버튼 클릭  
-            <div style="text-align: center;">
-              <img src="https://github.com/user-attachments/assets/c9603bcb-d003-4ca9-aa90-8866daa129cd" width="500" height="400" alt="VS Code 설치_1" class="center-image"/>
-            </div>     
-          </p>
-          <p> 3. 설치 위치 선택하고 [다음] 버튼 클릭  
-            <div style="text-align: center;">
-              <img src="https://github.com/user-attachments/assets/4a3d6d52-d245-4409-b985-5babc9d4f765" width="500" height="400" alt="VS Code 설치_2" class="center-image"/>
-            </div>     
-          </p>
-          <p> 4. 시작 메뉴 폴더 선택 항목은 필요에 따라 설정하고 [다음] 버튼 클릭  
-            <div style="text-align: center;">
-              <img src="https://github.com/user-attachments/assets/39c739fc-f354-471a-b62b-4ce78611cdf1" width="500" height="400" alt="image" class="center-image"/>
-            </div>    
-          </p>  
-          <p> 5. 추가 작업 선택 >> 필요에 따라 설정하고 [다음] 버튼 클릭  
-            <div style="text-align: center;">
-              <img src="https://github.com/user-attachments/assets/5ade06c8-93ee-4d03-b7bc-b253ff9c1f0b" width="500" height="400" alt="image" class="center-image"/>
-            </div>
-          </p>
-          <p> 6. [설치] 버튼 클릭  
-            <div style="text-align: center;">
-              <img src="https://github.com/user-attachments/assets/2452af7f-87b0-46d9-87b5-691353d3e8d4" width="500" height="400" alt="image" class="center-image"/>
-            </div>
-            <br/>
-            <div style="text-align: center;">
-              <img src="https://github.com/user-attachments/assets/978ec68f-81b3-4e7d-a090-52c20ec1ee31" width="500" height="400" alt="image" class="center-image"/>
-            </div>
-          </p>
-          <p> 7. [종료] 버튼 클릭
-            <div style="text-align: center;">
-              <img src="https://github.com/user-attachments/assets/b04c155c-807e-4d52-93c2-f75321208c53" width="500" height="400" alt="image" class="center-image"/>
-            </div>    
-          </p>
-          <ul>
-            <li>한글화 적용<br>
-              <p> 1) VS Code의 Extension(Ctrl+Shift+X)을 실행하고 검색창에 korean 입력
-                <div style="text-align: center;">
-                  <img src="https://github.com/user-attachments/assets/db59b4d0-06b1-426f-aebd-84c2e3e3b84e" width="1000" alt="image" class="center-image"/>
-                </div>  
-              </p>
-              <p> 2) install 클릭<br/>
-                  3) Change Language and Restart 클릭
-                <div style="text-align: center;">
-                  <img src="https://github.com/user-attachments/assets/4d203acd-eb00-47b6-89f5-2585ba09f1c1" width="1000" alt="image" class="center-image"/>
-                </div>  
-              </p>
-            </li>
-          </ul>
-      </div>
-    </body>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-D1LHM7F3NE"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-D1LHM7F3NE');
+  </script> 
+  <title>Visual Studio Code 설치(Windows 기준)</title>
+  <style>
+    :root {
+      --border-color: #333;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+      background-color: #f9f9f9;
+    }
+    .container {
+      max-width: 900px; /* 고정 width 대신 max-width 사용 */
+      width: 100%;
+      background: white;
+      border: 1px solid var(--border-color);
+      padding: 30px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    h1 {
+      border-bottom: 2px solid var(--border-color);
+      padding-bottom: 10px;
+      color: #2c3e50;
+    }
+    h2 {
+      margin-top: 40px;
+      font-size: 1.5rem;
+      color: #34495e;
+    }
+    ol { 
+      padding-left: 20px;
+    }
+    li {
+      margin-bottom: 30px; /* 각 단계별 간격 확보 */
+      font-weight: bold;
+    }
+    li p, li div {
+      font-weight: normal; /* 설명글은 보통 굵기로 */
+      margin-top: 10px;
+    }
+    .img-wrapper {
+      text-align: center;
+      margin-top: 15px;
+    }
+    .center-image {
+      display: inline-block;
+      max-width: 100%;    /* 화면보다 커지지 않게 조절 */
+      height: auto;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    .link-text {
+      color: #0078d4;
+      text-decoration: none;
+    }
+    .link-text:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Visual Studio Code 설치(Windows 기준)</h1>
+    
+    <ol>
+      <li>
+        설치 파일 다운로드 : <a href="https://code.visualstudio.com/" target="_blank" class="link-text">https://code.visualstudio.com/</a>
+        <div class="img-wrapper">
+          <img src="https://github.com/user-attachments/assets/a8f2f189-c9b4-46e5-99cd-db7e7b739f60" alt="VS Code 설치 파일 다운로드" class="center-image" style="width: 600px;">
+        </div>
+      </li>
+
+      <li>
+        설치파일 실행 후 [동의합니다] 선택하고 [다음] 버튼 클릭  
+        <div class="img-wrapper">
+          <img src="https://github.com/user-attachments/assets/c9603bcb-d003-4ca9-aa90-8866daa129cd" alt="VS Code 설치_1" class="center-image" style="width: 500px;">
+        </div>     
+      </li>
+
+      <li>
+        설치 위치 선택하고 [다음] 버튼 클릭  
+        <div class="img-wrapper">
+          <img src="https://github.com/user-attachments/assets/4a3d6d52-d245-4409-b985-5babc9d4f765" alt="VS Code 설치_2" class="center-image" style="width: 500px;">
+        </div>     
+      </li>
+
+      <li>
+        시작 메뉴 폴더 선택 항목은 필요에 따라 설정하고 [다음] 버튼 클릭  
+        <div class="img-wrapper">
+          <img src="https://github.com/user-attachments/assets/39c739fc-f354-471a-b62b-4ce78611cdf1" alt="시작 메뉴 설정" class="center-image" style="width: 500px;">
+        </div>    
+      </li>  
+
+      <li>
+        추가 작업 선택 >> 필요에 따라 설정하고 [다음] 버튼 클릭  
+        <div class="img-wrapper">
+          <img src="https://github.com/user-attachments/assets/5ade06c8-93ee-4d03-b7bc-b253ff9c1f0b" alt="추가 작업 선택" class="center-image" style="width: 500px;">
+        </div>
+      </li>
+
+      <li>
+        [설치] 버튼 클릭  
+        <div class="img-wrapper">
+          <img src="https://github.com/user-attachments/assets/2452af7f-87b0-46d9-87b5-691353d3e8d4" alt="설치 진행" class="center-image" style="width: 500px;">
+        </div>
+        <div class="img-wrapper">
+          <img src="https://github.com/user-attachments/assets/978ec68f-81b3-4e7d-a090-52c20ec1ee31" alt="설치 완료 중" class="center-image" style="width: 500px;">
+        </div>
+      </li>
+
+      <li>
+        [종료] 버튼 클릭
+        <div class="img-wrapper">
+          <img src="https://github.com/user-attachments/assets/b04c155c-807e-4d52-93c2-f75321208c53" alt="설치 종료" class="center-image" style="width: 500px;">
+        </div>    
+      </li>
+    </ol>
+
+    <hr>
+
+    <h2>한글화 적용</h2>
+    <ol>
+      <li>
+        VS Code의 Extension(Ctrl+Shift+X)을 실행하고 검색창에 <code>korean</code> 입력
+        <div class="img-wrapper">
+          <img src="https://github.com/user-attachments/assets/db59b4d0-06b1-426f-aebd-84c2e3e3b84e" alt="한국어 확장 설치" class="center-image">
+        </div>  
+      </li>
+      <li>
+        [Install] 클릭 후, [Change Language and Restart] 클릭
+        <div class="img-wrapper">
+          <img src="https://github.com/user-attachments/assets/4d203acd-eb00-47b6-89f5-2585ba09f1c1" alt="언어 변경 및 재시작" class="center-image">
+        </div>  
+      </li>
+    </ol>
+  </div>
+</body>
 </html>
