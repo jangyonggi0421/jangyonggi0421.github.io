@@ -111,19 +111,23 @@
 
     <pre>
 # 1. cockpit 설치
-sudo dnf install -y cockpit
+@localhost ~]$ sudo dnf install -y cockpit
 
 # 2. 부팅 시 자동 시작 설정 및 즉시 실행 
-sudo systemctl enable --now cockpit.socket
+@localhost ~]$ sudo systemctl enable --now cockpit.socket
 
 # 3. 방화벽 허용 설정
-sudo firewall-cmd --add-service=cockpit --permanent
+@localhost ~]$ sudo firewall-cmd --add-service=cockpit --permanent
 
 # 4. 방화벽 규칙 적용
-sudo firewall-cmd --reload
+@localhost ~]$ sudo firewall-cmd --reload
 
-# 5. 접속 주소 (기본 포트: 9090)
+# 5. 공유기 포트포워딩 설정(기본: 9090 포트)
+
+# 6. 웹 브라우저에서 접속(기본 포트: 9090)
 # https://<내부 서버주소>:9090</pre>
+
+# 7. 로그인 시 시스템 사용자 계정과 비밀번호 사용 (예: root 또는 일반 사용자 계정)
 
     <hr>
 
@@ -132,21 +136,25 @@ sudo firewall-cmd --reload
 
     <pre>
 # 1. epel 저장소 추가
-sudo dnf install epel-release -y
+@localhost ~]$ sudo dnf install epel-release -y
 
 # 2. XRDP 설치
-sudo dnf install xrdp -y
+@localhost ~]$ sudo dnf install xrdp -y
 
 # 3. XRDP 자동 시작 설정 및 즉시 실행
-sudo systemctl enable --now xrdp
+@localhost ~]$ sudo systemctl enable --now xrdp
 
 # 4. 방화벽 열기 (기본 포트: 3389)
-sudo firewall-cmd --add-port=3389/tcp --permanent
+@localhost ~]$ sudo firewall-cmd --add-port=3389/tcp --permanent
 
 # 5. 방화벽 규칙 적용
-sudo firewall-cmd --reload
+@localhost ~]$ sudo firewall-cmd --reload
 
-# 6. 접속 정보
+# 6. 공유기에서 포트포워딩 설정 (예: 3389 포트)
+
+# 7. 기존 로그인된 서버 로그아웃
+
+# 8. Windows 원격 데스크톱(Windows 11기준), Windows App(macOS 기준) 에서 접속
 # 서버주소:포트번호 (예: 192.168.0.1:3389)</pre>
 
   </div>
