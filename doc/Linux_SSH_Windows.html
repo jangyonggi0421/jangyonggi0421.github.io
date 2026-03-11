@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SSH 인증키 접속 설정</title>
+  <style>
+    :root {
+      --border-color: #333;
+      --code-bg: #2d2d2d;
+      --code-text: #f8f8f2;
+      --accent-color: #0078d4;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+      background-color: #f9f9f9;
+    }
+    .container {
+      max-width: 900px;
+      width: 100%;
+      background: white;
+      border: 1px solid var(--border-color);
+      padding: 30px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    h1 {
+      border-bottom: 2px solid var(--border-color);
+      padding-bottom: 10px;
+      color: #2c3e50;
+      font-size: 1.8rem;
+    }
+    h2 {
+      margin-top: 40px;
+      font-size: 1.5rem;
+      color: #34495e;
+      border-left: 5px solid var(--accent-color);
+      padding-left: 15px;
+    }
+    h3 {
+      font-size: 1.1rem;
+      color: #444;
+      margin-top: 25px;
+    }
+    .info-box {
+      background-color: #eef6fc;
+      padding: 15px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      font-size: 0.95rem;
+    }
+    ul, ol {
+      padding-left: 20px;
+      margin-bottom: 20px;
+    }
+    li {
+      margin-bottom: 8px;
+    }
+    pre {
+      background-color: var(--code-bg);
+      color: var(--code-text);
+      padding: 15px;
+      border-radius: 5px;
+      overflow-x: auto;
+      font-family: 'Consolas', 'Monaco', monospace;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+    code {
+      color: #d63384;
+      background: #fdf2f7;
+      padding: 2px 4px;
+      border-radius: 3px;
+    }
+    .note {
+      background-color: #fff4e5;
+      border-left: 5px solid #ffa117;
+      padding: 10px 15px;
+      margin: 15px 0;
+      font-size: 0.9rem;
+    }
+    hr {
+      border: 0;
+      border-top: 1px solid #eee;
+      margin: 40px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>SSH 인증키 접속 설정</h1>
+    
+    <div class="info-box">
+      <strong>시스템 환경</strong>
+      <ul>
+        <li>OS: Rocky Linux 9.7 (Blue Onyx)</li>
+        <li>Kernel: Linux 5.14.0-611.36.1.el9_7.x86_64</li>
+        <li>접속 OS: Windows 11 Pro (25H2, 26200.7922)</li>
+      </ul>
+    </div>
+
+    <h2>1. SSH 설치 확인</h2>
+    <p><code>openssh-server</code> 패키지가 설치되어 있는지 확인합니다.</p>
+    <pre>
+# 1. 패키지 업데이트
+sudo dnf update -y
+
+# 2. 설치 확인
+rpm -qa | grep openssh-server
+# 결과 예시: openssh-server-8.7p1... 가 나오면 설치됨
+
+# 2-1. 미설치 시 설치
+sudo dnf install openssh-server -y</pre>
+
+    <h2>2. SSH 서비스 활성화</h2>
+    <pre>
+# 1. 서비스 활성화 및 즉시 시작
+sudo systemctl enable --now sshd
+
+# 2. 상태 확인 (Active: active(running) 확인)
+sudo systemctl status sshd</pre>
+
+    <h2>3. 방화벽 설정</h2>
+    <pre>
+# 1. 서비스 항목에 ssh 포함 여부 확인
+sudo firewall-cmd --list-all
+
+# 1-1. 항목이 없을 경우 추가
+sudo firewall-cmd --permanent --add-service=ssh
+
+# 2. 규칙 즉시 반영
+sudo firewall-cmd --reload</pre>
+
+    <h2>4. SSH 인증키 접속 준비</h2>
+    <div class="note">
+      Rocky Linux 9부터는 보안 강화를 위해 root 계정의 비밀번호 접속이 기본적으로 금지됩니다.
+    </div>
+
+    <h3>Linux 서버 설정 변경</h3>
+    <pre>
+# 1. 디렉토리 생성 및 권한 설정
+mkdir -p ~/.ssh
+chmod 700 ~/.ssh
+restorecon -Rv ~/.ssh
+
+# 2. sshd_config 설정 수정
+su -
+vi /etc/ssh/sshd_config
+
+# 수정 사항 (주석 해제 및 설정 확인):
+# 45라인: PubkeyAuthentication yes
+# 49라인: AuthorizedKeyFile .ssh/authorized_keys
+# 65라인: PasswordAuthentication yes (키 등록 전까지 한시적 허용)</pre>
+
+    <hr>
+
+    <h2>5. Windows 클라이언트 설정 및 접속</h2>
+    <p>Windows PowerShell에서 작업을 수행합니다.</p>
+
+    <pre>
+# 1. SSH 키 생성
+ssh-keygen -t rsa -b 4096
+
+# 2. 생성된 공개키(.pub) 내용 복사
+Get-Content C:\Users\&lt;사용자명&gt;\.ssh\&lt;키이름&gt;.pub | Set-Clipboard
+
+# 3. 서버에 공개키 등록
+ssh &lt;User&gt;@&lt;IP주소&gt;
+echo "복사한 키 내용" >> ~/.ssh/authorized_keys
+exit
+
+# 4. 보안 강화 (비밀번호 접속 차단)
+# /etc/ssh/sshd_config 파일에서 PasswordAuthentication no 로 수정
+
+# 5. 서비스 재시작
+sudo systemctl restart sshd</pre>
+
+  </div>
+</body>
+</html>
