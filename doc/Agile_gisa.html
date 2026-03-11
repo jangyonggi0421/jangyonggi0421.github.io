@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>애자일(Agile) 소프트웨어 개발 방법론</title>
+  <style>
+    :root {
+      --border-color: #333;
+      --accent-color: #0078d4;
+      --bg-light: #f9f9f9;
+      --box-bg: #f4f4f4;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+      background-color: var(--bg-light);
+    }
+    .container {
+      max-width: 900px;
+      width: 100%;
+      background: white;
+      border: 1px solid var(--border-color);
+      padding: 30px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    h1 {
+      border-bottom: 2px solid var(--border-color);
+      padding-bottom: 10px;
+      color: #2c3e50;
+      font-size: 1.8rem;
+    }
+    h2 {
+      margin-top: 40px;
+      font-size: 1.5rem;
+      color: #34495e;
+      border-left: 5px solid var(--accent-color);
+      padding-left: 15px;
+    }
+    h3 {
+      font-size: 1.2rem;
+      color: #2980b9;
+      margin-top: 25px;
+      border-bottom: 1px dotted #ccc;
+      display: inline-block;
+      padding-bottom: 3px;
+    }
+    ul, ol {
+      padding-left: 20px;
+      margin-bottom: 20px;
+    }
+    li {
+      margin-bottom: 8px;
+    }
+    .core-values {
+      background-color: #fff4e5;
+      border: 1px solid #ffa117;
+      padding: 20px;
+      border-radius: 5px;
+      margin: 20px 0;
+    }
+    .core-values strong {
+      color: #e67e22;
+    }
+    code {
+      color: #d63384;
+      background: #fdf2f7;
+      padding: 2px 4px;
+      border-radius: 3px;
+      font-family: Consolas, monospace;
+    }
+    hr {
+      border: 0;
+      border-top: 1px solid #eee;
+      margin: 40px 0;
+    }
+    .methodology-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+      margin-top: 10px;
+    }
+    .method-item {
+      background: var(--box-bg);
+      padding: 10px 15px;
+      border-radius: 4px;
+      font-size: 0.95rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>애자일(Agile) 소프트웨어 개발 방법론</h1>
+    
+    <ul>
+      <li>고객의 요구사항 변화에 유연하게 대응할 수 있도록 일정한 주기를 반복하면서 개발과정을 진행</li>
+      <li>스프린트(Sprint) 또는 이터레이션(iteration) 의 짧은 개발 주기를 반복하며 고객의 평가와 요구를 적극 수용</li>
+      <li>고객의 요구사항에 우선순위를 부여하여 개발 작업을 진행</li>
+      <li>소규모 프로젝트, 고도로 숙달된 개발자, 급변하는 요구사항에 적합</li>
+    </ul>
+
+    <hr>
+
+    <h2>애자일 주요 개발 방법론</h2>
+    
+    <h3>스크럼(Scrum)</h3>
+    <p>팀워크 중심의 방법론으로, 특정 기간(Sprint) 동안 동작 가능한 제품을 개발합니다. (진행단계: 백로그 ➜ 스프린트 ➜ 검토)</p>
+    <ul>
+      <li><strong>제품 백로그(Product Backlog):</strong> 개발할 기능들의 우선순위 목록</li>
+      <li><strong>스프린트(Sprint):</strong> 짧은 개발 주기(2~4주)</li>
+      <li><strong>스크럼 마스터(Scrum Master):</strong> 팀의 장애물을 제거하고 가이드를 주는 조력자</li>
+      <li><strong>데일리 스크럼(Daily Scrum):</strong> 짧은 미팅</li>
+      <li><strong>제품 책임자(Product Owner):</strong> 제품의 비즈니스 가치를 극대화하고 무엇을 만들지 결정하는 사람</li>
+    </ul>
+
+    
+    <h3>XP(eXtreme Programming)</h3>
+    <p>고객의 참여와 짧은 개발 과정의 반복을 극대화하여 생산성을 향상시키는 방법입니다.</p>
+    
+    <p><strong>핵심 가치:</strong> 의사소통, 단순성, 피드백, 용기, 존중</p>
+    
+    <p><strong>주요 실천 사항:</strong></p>
+    <ul>
+      <li><code>Pair Programming</code>: 다른 사람과 함께 프로그래밍 수행</li>
+      <li><code>TDD(Test Driven Development)</code>: 테스트 주도 개발</li>
+      <li><code>CI(Continuous Integration)</code>: 지속적인 통합</li>
+      <li><code>Refactoring</code>: 리팩토링</li>
+      <li><code>Small Releases</code>: 짧은 출시 주기</li>
+    </ul>
+
+    <h3>기타 방법론</h3>
+    <div class="methodology-grid">
+      <div class="method-item">칸반</div>
+      <div class="method-item">크리스탈</div>
+      <div class="method-item">Lean</div>
+      <div class="method-item">ASD (Adaptive Software Development)</div>
+      <div class="method-item">FDD (기능 중심 개발)</div>
+      <div class="method-item">DAD (Disciplined Agile Delivery)</div>
+      <div class="method-item">DSDM (Dynamic System Development Method)</div>
+    </div>
+
+    <hr>
+
+    <h2>애자일의 핵심 가치</h2>
+    <div class="core-values">
+      <ul>
+        <li><strong>개인과의 상호작용</strong> > 프로세스(공정)와 도구</li>
+        <li><strong>실행되는 소프트웨어</strong> > 포괄적인 문서</li>
+        <li><strong>고객과의 협력</strong> > 계약 협상</li>
+        <li><strong>변화에 대응</strong> > 계획 준수</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>
