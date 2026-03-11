@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Linux 원격 관리 설정</title>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-D1LHM7F3NE"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-D1LHM7F3NE');
+  </script> 
+  <style>
+    :root {
+      --border-color: #333;
+      --code-bg: #f4f4f4;
+      --accent-color: #0078d4;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+      background-color: #f9f9f9;
+    }
+    .container {
+      max-width: 900px;
+      width: 100%;
+      background: white;
+      border: 1px solid var(--border-color);
+      padding: 30px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    h1 {
+      border-bottom: 2px solid var(--border-color);
+      padding-bottom: 10px;
+      color: #2c3e50;
+      font-size: 1.8rem;
+    }
+    h2 {
+      margin-top: 40px;
+      font-size: 1.5rem;
+      color: #34495e;
+      border-left: 5px solid var(--accent-color);
+      padding-left: 15px;
+    }
+    .info-box {
+      background-color: #eef6fc;
+      padding: 15px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      font-size: 0.95rem;
+    }
+    ul, ol {
+      padding-left: 20px;
+      margin-bottom: 20px;
+    }
+    li {
+      margin-bottom: 10px;
+    }
+    pre {
+      background-color: var(--code-bg);
+      padding: 15px;
+      border-radius: 5px;
+      overflow-x: auto;
+      border: 1px solid #ddd;
+      font-family: 'Consolas', 'Monaco', monospace;
+      font-size: 0.9rem;
+      line-height: 1.4;
+    }
+    code {
+      color: #d63384;
+      background: #fdf2f7;
+      padding: 2px 4px;
+      border-radius: 3px;
+    }
+    hr {
+      border: 0;
+      border-top: 1px solid #eee;
+      margin: 40px 0;
+    }
+    .desc {
+      color: #666;
+      margin-bottom: 15px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Linux 원격 관리 설정 가이드</h1>
+    
+    <div class="info-box">
+      <strong>시스템 환경</strong>
+      <ul>
+        <li>OS: Rocky Linux 9.7 (Blue Onyx)</li>
+        <li>Kernel: Linux 5.14.0-611.36.1.el9_7.x86_64</li>
+      </ul>
+    </div>
+
+    <hr>
+
+    <h2>방법 1. Cockpit 설치 및 설정</h2>
+    <p class="desc">웹 브라우저를 통해 리눅스 서버를 직관적인 그래픽(GUI)으로 관리할 수 있게 해주는 오픈소스 도구입니다.</p>
+    
+    <ul>
+      <li><strong>주요 특징:</strong> 9090 포트 사용, 실시간 모니터링, 서비스 및 네트워크 제어</li>
+    </ul>
+
+    <pre>
+# 1. cockpit 설치
+sudo dnf install -y cockpit
+
+# 2. 부팅 시 자동 시작 설정 및 즉시 실행 
+sudo systemctl enable --now cockpit.socket
+
+# 3. 방화벽 허용 설정
+sudo firewall-cmd --add-service=cockpit --permanent
+
+# 4. 방화벽 규칙 적용
+sudo firewall-cmd --reload
+
+# 5. 접속 주소 (기본 포트: 9090)
+# https://<내부 서버주소>:9090</pre>
+
+    <hr>
+
+    <h2>방법 2. XRDP 설정</h2>
+    <p class="desc">Windows의 원격 데스크톱 연결(RDP) 프로토콜을 사용하여 리눅스 GUI 환경에 접속합니다.</p>
+
+    <pre>
+# 1. epel 저장소 추가
+sudo dnf install epel-release -y
+
+# 2. XRDP 설치
+sudo dnf install xrdp -y
+
+# 3. XRDP 자동 시작 설정 및 즉시 실행
+sudo systemctl enable --now xrdp
+
+# 4. 방화벽 열기 (기본 포트: 3389)
+sudo firewall-cmd --add-port=3389/tcp --permanent
+
+# 5. 방화벽 규칙 적용
+sudo firewall-cmd --reload
+
+# 6. 접속 정보
+# 서버주소:포트번호 (예: 192.168.0.1:3389)</pre>
+
+  </div>
+</body>
+</html>ƒ
