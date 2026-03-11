@@ -1,30 +1,99 @@
 <!DOCTYPE html>
 <html lang="ko">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!-- Google tag (gtag.js) -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-D1LHM7F3NE"></script>
-        <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-D1LHM7F3NE');
-        </script>
-    </head>
-    <body>
-        <h1>개인 블로그 기록</h1>
-            <hr>
-            <h2>README</h2>
-            <ul>
-                <li>
-                    <a href="https://jangyonggi0421.github.io/doc/README.md">README</a>
-                </li>
-            </ul>
-            <hr>
-            <h2>Visual Studio Code 설치(Windows 기준)</h2>
-            <ol>
-                <li><a href="https://jangyonggi0421.github.io/doc/VisualStudio_Code_install_Windows.html">Visual Studio Code 설치(Windows)</a></li>
-            </ol>
-    </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-D1LHM7F3NE"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-D1LHM7F3NE');
+  </script>
+  <title>개인 블로그 기록</title>
+  <style>
+    :root {
+      --border-color: #333;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+      background-color: #f9f9f9;
+    }
+    .container {
+      max-width: 900px; /* 고정 width 대신 max-width 사용 */
+      width: 100%;
+      background: white;
+      border: 1px solid var(--border-color);
+      padding: 30px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    h1 {
+      border-bottom: 2px solid var(--border-color);
+      padding-bottom: 10px;
+      color: #2c3e50;
+    }
+    hr {
+      border: 0;
+      border-top: 1px solid #eee;
+      margin: 40px 0;
+    }
+    h2 {
+      margin-top: 50px;       /* 위쪽 설치 리스트와 확실한 간격 확보 */
+      margin-bottom: 20px;
+      font-size: 1.6rem;
+      color: #2c3e50;        /* h1과 통일감 있는 색상 */
+    }
+    ol { 
+      padding-left: 20px;
+    }
+    li {
+      margin-bottom: 30px; /* 각 단계별 간격 확보 */
+      font-weight: bold;
+    }
+    li p, li div {
+      font-weight: normal; /* 설명글은 보통 굵기로 */
+      margin-top: 10px;
+    }
+    .img-wrapper {
+      text-align: center;
+      margin-top: 15px;
+    }
+    .image {
+      display: inline-block;
+      max-width: 100%;    /* 화면보다 커지지 않게 조절 */
+      height: auto;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    .link-text {
+      color: #0078d4;
+      text-decoration: none;
+    }
+    .link-text:hover {
+      text-decoration: underline;
+    }         
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>개인 블로그 기록</h1>
+    <hr>
+    <h2>README</h2>
+    <ul>
+        <li>
+            <a href="https://jangyonggi0421.github.io/doc/README.md">README</a>
+        </li>
+    </ul>
+    <hr>
+    <h2>Visual Studio Code 설치(Windows 기준)</h2>
+    <ol>
+        <li><a href="https://jangyonggi0421.github.io/doc/VisualStudio_Code_install_Windows.html">Visual Studio Code 설치(Windows)</a></li>
+    </ol>
+  </div>      
+</body>
 </html>
