@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Linux WOL 설정(Rocky Linux 9.7)</title>
+  <style>
+    :root {
+      --border-color: #333;
+      --code-bg: #2d2d2d;
+      --code-text: #f8f8f2;
+      --accent-color: #0078d4;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+      background-color: #f9f9f9;
+    }
+    .container {
+      max-width: 900px;
+      width: 100%;
+      background: white;
+      border: 1px solid var(--border-color);
+      padding: 30px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    h1 {
+      border-bottom: 2px solid var(--border-color);
+      padding-bottom: 10px;
+      color: #2c3e50;
+      font-size: 1.8rem;
+    }
+    h2 {
+      margin-top: 40px;
+      font-size: 1.5rem;
+      color: #34495e;
+      border-left: 5px solid var(--accent-color);
+      padding-left: 15px;
+    }
+    h3 {
+      font-size: 1.1rem;
+      color: #444;
+      margin-top: 25px;
+    }
+    .info-box {
+      background-color: #eef6fc;
+      padding: 15px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      font-size: 0.95rem;
+    }
+    ul, ol {
+      padding-left: 20px;
+      margin-bottom: 20px;
+    }
+    li {
+      margin-bottom: 8px;
+    }
+    pre {
+      background-color: var(--code-bg);
+      color: var(--code-text);
+      padding: 15px;
+      border-radius: 5px;
+      overflow-x: auto;
+      font-family: 'Consolas', 'Monaco', monospace;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+    code {
+      color: #d63384;
+      background: #fdf2f7;
+      padding: 2px 4px;
+      border-radius: 3px;
+    }
+    .note {
+      background-color: #fff4e5;
+      border-left: 5px solid #ffa117;
+      padding: 10px 15px;
+      margin: 15px 0;
+      font-size: 0.9rem;
+    }
+    hr {
+      border: 0;
+      border-top: 1px solid #eee;
+      margin: 40px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Linux WOL 설정(Rocky Linux 9.7)</h1>
+
+    <div class="info-box">
+      <strong>시스템 환경</strong>
+      <ul>
+        <li>OS: Rocky Linux 9.7 (Blue Onyx)</li>
+        <li>Kernel: Linux 5.14.0-611.36.1.el9_7.x86_64</li>
+      </ul>
+    </div>
+
+    <h2>1. BIOS/UEFI 설정</h2>
+    <p>먼저 BIOS/UEFI에서 해당 옵션을 활성화</p>
+    <p>컴퓨터 부팅 시 BIOS/UEFI 설정 화면으로 진입(보통 Del, F2, F10 키 중 하나를 누름)해서 각 메인보드 별 WOL 기능 활성화 </p>
+
+    <h2>2. Rocky Linux 9.7 설정</h2>
+    <pre>
+# 1. 네트워크 인터페이스 이름 확인
+@localhost ~]$ nmcli connection show
+
+# 예시 출력:
+# NAME                UUID                                  TYPE      DEVICE
+# 유선 연결 1          12345678-90ab-cdef-1234-567890abcdef  ethernet  enp0s5    
+
+# 2. nmcli로 WOL 설정
+@localhost ~]$ sudo nmcli modify "<NAME>" 802-3-ethernet.wake-on-lan magic
+
+# "<NAME>" : 1번 결과의 NAME 항목 값 입력
+# 예) sudo nmcli modify "유선 연결 1" 802-3-ethernet.wake-on-lan magic
+
+# 3. 변경 사항 활성화
+@localhost ~]$ sudo nmcli connection up "<NAME>"
+
+# 4. WOL 활성화 여부 확인
+@localhost ~]$ nmcli connection show "<NAME>" | grep "802-3-ethernet.wake-on-lan"
+# 결과 예시: 802-3-ethernet.wake-on-lan: magic
+
+# 또는
+@localhost ~]$ sudo ethtool <DEVICE> | grep "Wake-on"
+# <DEVICE> : 1번 결과의 DEVICE 항목 값 입력
+# 예) sudo ethtool enp0s5 | grep "Wake-on"
+# 결과 예시: Wake-on: g (g 일 경우, 활성화 상태)</pre>
+
+  </div>
+</body>
+</html>
