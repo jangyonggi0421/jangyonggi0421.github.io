@@ -3,14 +3,11 @@
 ```
 시스템 환경
 - 접속 OS : Windows 11 Pro(25H2, 26200.7922)
-
 ```
-  
 -----  
-  
 - 특이점 :   
-* 리소스 제한 : Oracle Database XE는 최대 사용자 데이터 크기(예: 21c XE의 경우 12GB) 및 활용할 수 있는 RAM 에 대한 제한(예: 21c XE의 경우 2GB)과 같은 특정 리소스 제한이 있음.  
-  
+  - 리소스 제한 : Oracle Database XE는 최대 사용자 데이터 크기(예: 21c XE의 경우 12GB) 및 활용할 수 있는 RAM 에 대한 제한(예: 21c XE의 경우 2GB)과 같은 특정 리소스 제한이 있음.  
+-----  
 1. 파일 다운로드 (Oracle Database 21c Express Edition for Windows x64) 이후 압축해제 : [https://www.oracle.com/kr/database/technologies/xe-downloads.html](https://www.oracle.com/kr/database/technologies/xe-downloads.html)  
   
 ![Pasted Graphic.png](Attachments/F038D346-7DBE-4F7C-B185-F445BD151C18.png)  
