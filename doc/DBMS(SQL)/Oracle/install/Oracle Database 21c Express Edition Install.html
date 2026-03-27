@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Oracle Database 21c Express Edition 설치 및 설정</title>
+  <style>
+    :root {
+      --border-color: #333;
+      --accent-color: #f80000; /* 오라클 브랜드 컬러 계열 */
+      --bg-light: #f9f9f9;
+      --code-bg: #2d2d2d;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+      background-color: var(--bg-light);
+    }
+    .container {
+      max-width: 900px;
+      width: 100%;
+      background: white;
+      border: 1px solid var(--border-color);
+      padding: 30px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    h1 {
+      border-bottom: 2px solid var(--border-color);
+      padding-bottom: 10px;
+      color: #2c3e50;
+      font-size: 1.8rem;
+    }
+    h2 {
+      margin-top: 40px;
+      font-size: 1.5rem;
+      color: #34495e;
+      border-left: 5px solid var(--accent-color);
+      padding-left: 15px;
+    }
+    .info-box {
+      background-color: #fff5f5;
+      border: 1px solid #feb2b2;
+      padding: 15px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      font-size: 0.95rem;
+    }
+    ul, ol {
+      padding-left: 20px;
+      margin-bottom: 20px;
+    }
+    li {
+      margin-bottom: 30px; /* 단계별 간격 */
+      font-weight: bold;
+    }
+    li p, li div {
+      font-weight: normal;
+      margin-top: 10px;
+    }
+    .img-wrapper {
+      text-align: center;
+      margin-top: 15px;
+      background-color: #eee;
+      padding: 10px;
+      border-radius: 4px;
+    }
+    .center-image {
+      display: inline-block;
+      max-width: 100%;
+      height: auto;
+      border: 1px solid #ddd;
+    }
+    code {
+      color: #d63384;
+      background: #fdf2f7;
+      padding: 2px 4px;
+      border-radius: 3px;
+      font-family: Consolas, monospace;
+    }
+    .env-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    .env-table th, .env-table td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: left;
+    }
+    .env-table th {
+      background-color: #f4f4f4;
+      width: 30%;
+    }
+    hr {
+      border: 0;
+      border-top: 1px solid #eee;
+      margin: 40px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Oracle Database 21c Express Edition 설치 및 설정</h1>
+    
+    <div class="info-box">
+      <strong>시스템 환경 및 리소스 제한</strong>
+      <ul>
+        <li>접속 OS: Windows 11 Pro (25H2, 26200.7922)</li>
+        <li>데이터 크기: 최대 12GB (사용자 데이터 기준)</li>
+        <li>메모리(RAM): 최대 2GB 활용</li>
+        <li>프로세서: 최대 2개의 스레드 사용</li>
+      </ul>
+    </div>
+
+    <hr>
+
+    <ol>
+      <li>
+        파일 다운로드 및 압축해제
+        <p><a href="https://www.oracle.com/kr/database/technologies/xe-downloads.html" target="_blank">Oracle Database 21c XE 다운로드 페이지</a></p>
+        <div class="img-wrapper">
+          <img src="Attachments/F038D346-7DBE-4F7C-B185-F445BD151C18.png" alt="다운로드 화면" class="center-image">
+        </div>
+      </li>
+
+      <li>
+        <code>setup.exe</code> 파일 실행
+        <p>압축 해제된 <code>OracleXE213_Win64</code> 폴더 내에서 실행합니다.</p>
+        <div class="img-wrapper">
+          <img src="Attachments/D0BC5EFF-6594-48F2-8551-1BC50187B95A.png" alt="설치 파일 실행" class="center-image">
+        </div>
+      </li>
+
+      <li>
+        라이선스 동의 및 다음
+        <div class="img-wrapper">
+          <img src="Attachments/D0BC5EFF-6594-48F2-8551-1BC50187B95A.png" alt="설치 단계 1" class="center-image">
+        </div>
+        <div class="img-wrapper">
+          <img src="Attachments/8BE36F04-1BFA-4EB7-8C8B-D2EA69C874B8.png" alt="설치 단계 2" class="center-image">
+        </div>
+      </li>
+
+      <li>
+        설치 경로 지정
+        <p>기본 경로를 사용하거나 [변경]을 통해 원하는 위치(예: <code>H:\dev\OracleXE</code>)를 지정합니다.</p>
+        <div class="img-wrapper">
+          <img src="Attachments/1AAA6A0B-A4E6-4FAA-9D9A-B71BE2A34D62.png" alt="경로 설정" class="center-image">
+        </div>
+      </li>
+
+      <li>
+        관리자 계정 비밀번호 설정
+        <p>SYS, SYSTEM, PDBADMIN 계정의 비밀번호를 설정합니다. (예: <code>12345</code>)</p>
+        <div class="img-wrapper">
+          <img src="Attachments/83FB81A0-2EAE-46AF-B30D-7587A474B1F0.png" alt="비밀번호 설정" class="center-image">
+        </div>
+        <div class="img-wrapper">
+          <img src="Attachments/3A93037F-7859-4629-A7B4-207FEA0AB744.png" alt="설치 진행" class="center-image">
+        </div>
+      </li>
+
+      <li>
+        설치 확인
+        <p>명령 프롬프트(CMD)에서 <code>sqlplus</code>를 입력하여 정상 작동 여부를 확인합니다.</p>
+        <div class="img-wrapper">
+          <img src="Attachments/CD393BA3-56BF-4144-A045-672802D29A05.png" alt="SQLPlus 확인" class="center-image">
+        </div>
+      </li>
+
+      <li>
+        환경 변수 추가
+        <p>고급 시스템 설정의 환경 변수 메뉴에서 다음 항목을 추가합니다.</p>
+        
+        <table class="env-table">
+          <tr>
+            <th>ORACLE_HOME</th>
+            <td>C:\app\사용자명\product\21c\dbhomeXE (또는 설치 경로)</td>
+          </tr>
+          <tr>
+            <th>PATH 추가</th>
+            <td><code>%ORACLE_HOME%\bin</code></td>
+          </tr>
+        </table>
+      </li>
+    </ol>
+  </div>
+</body>
+</html>
