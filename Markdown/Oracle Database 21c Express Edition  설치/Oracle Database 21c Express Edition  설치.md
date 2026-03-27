@@ -38,5 +38,3 @@
     - 변수 값 : C:\app\사용자명\product\21c\dbhomeXE 또는 위에서 설정한 Oracle 설치 경로\product\21c\dbhomeXE  
 - PATH 추가  
     - 변수 값 : %ORACLE_HOME%\bin  
-  
-  
