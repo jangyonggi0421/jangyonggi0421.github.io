@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Oracle SQL Developer 설치</title>
+  <style>
+    :root {
+      --border-color: #333;
+      --accent-color: #f80000;
+      --bg-light: #f9f9f9;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+      background-color: var(--bg-light);
+    }
+    .container {
+      max-width: 900px;
+      width: 100%;
+      background: white;
+      border: 1px solid var(--border-color);
+      padding: 30px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    h1 {
+      border-bottom: 2px solid var(--border-color);
+      padding-bottom: 10px;
+      color: #2c3e50;
+      font-size: 1.8rem;
+    }
+    .info-box {
+      background-color: #f4f4f4;
+      padding: 15px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      font-size: 0.95rem;
+      border-left: 5px solid var(--border-color);
+    }
+    ol {
+      padding-left: 20px;
+      margin-top: 20px;
+    }
+    li {
+      margin-bottom: 35px;
+      font-weight: bold;
+    }
+    li ul, li p, li div {
+      font-weight: normal;
+      margin-top: 10px;
+    }
+    .img-wrapper {
+      text-align: center;
+      margin-top: 15px;
+      padding: 10px;
+      border: 1px dashed #ccc;
+      border-radius: 4px;
+    }
+    .center-image {
+      display: inline-block;
+      max-width: 100%;
+      height: auto;
+      border: 1px solid #ddd;
+    }
+    .link-text {
+      color: #0078d4;
+      text-decoration: none;
+    }
+    .link-text:hover {
+      text-decoration: underline;
+    }
+    code {
+      color: #d63384;
+      background: #fdf2f7;
+      padding: 2px 4px;
+      border-radius: 3px;
+    }
+    hr {
+      border: 0;
+      border-top: 1px solid #eee;
+      margin: 40px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Oracle SQL Developer 설치</h1>
+    
+    <div class="info-box">
+      Windows 11 Pro (25H2, 26200.7922) 기준
+    </div>
+
+    <hr>
+
+    <ol>
+      <li>
+        설치 파일 다운로드 : <a href="https://www.oracle.com/database/sqldeveloper/" target="_blank" class="link-text">https://www.oracle.com/database/sqldeveloper/</a>
+        <ul>
+          <li>Java 설치가 안 되어 있을 경우:
+            <ul>
+              <li><a href="https://ygjang-421.tistory.com/entry/1-OpenJDK-17Windows-설치" target="_blank" class="link-text">OpenJDK 17 Windows 설치</a></li>
+              <li><a href="https://ygjang-421.tistory.com/entry/2-OpenJDK-21Windows-설치-및-2가지-이상-JDK-사용" target="_blank" class="link-text">OpenJDK 21 Windows 설치 및 JDK 관리</a></li>
+            </ul>
+          </li>
+        </ul>
+        <div class="img-wrapper">
+          <img src="SQL Developer.png" alt="SQL Developer 다운로드" class="center-image">
+        </div>
+      </li>
+
+      <li>
+        파일 압축 해제 및 <code>sqldeveloper.exe</code> 파일 실행
+        <div class="img-wrapper">
+          <img src="Pasted Graphic 7.png" alt="파일 실행" class="center-image">
+        </div>
+      </li>
+
+      <li>
+        완료
+        <div class="img-wrapper">
+          <img src="Pasted Graphic 8.png" alt="설치 완료" class="center-image">
+        </div>
+      </li>
+
+      <li>
+        접속 테스트
+        <ol style="list-style-type: lower-alpha; font-weight: normal;">
+          <li>초기 화면 중 접속 창에서 <strong>+</strong> 버튼을 클릭하거나 <strong>Oracle 접속</strong>을 우클릭하여 <strong>새 접속</strong> 클릭</li>
+          <li>새로 만들기/데이터베이스 접속 선택 창에서 정보 입력
+            <ul>
+              <li><strong>Name</strong> &gt; localhost</li>
+              <li><strong>사용자 이름</strong> &gt; system</li>
+              <li><strong>비밀번호</strong> &gt; 기존 설정한 비밀번호</li>
+            </ul>
+          </li>
+          <li><strong>테스트</strong> &gt; <strong>접속</strong> 순으로 실행</li>
+        </ol>
+        <div class="img-wrapper">
+          <img src="image.png" alt="접속 테스트" class="center-image">
+        </div>
+      </li>
+    </ol>
+  </div>
+</body>
+</html>
