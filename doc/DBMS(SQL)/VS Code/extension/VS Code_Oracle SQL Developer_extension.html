@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VS Code Oracle SQL Developer Extension 추가</title>
+    <style>
+        :root {
+            --border-color: #333;
+            --accent-color: #2500f8; 
+            --bg-light: #f9f9f9;
+            --code-bg: #2d2d2d;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+            background-color: #fdfdfd; /* 배경을 아주 약간 회색으로 */
+        }
+        h1 {
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 10px;
+            color: #2c3e50;
+            font-size: 1.8rem;
+            }
+        h2 {
+            margin-top: 40px;
+            font-size: 1.5rem;
+            color: #34495e;
+            border-left: 5px solid var(--accent-color);
+            padding-left: 15px;
+            }
+        h3 { 
+            color: #34495e; 
+            margin-top: 25px; 
+            font-size: 1.2rem; 
+            }
+        .env-info { color: #666; font-size: 0.95em; background: #f4f4f4; padding: 10px; border-radius: 5px; margin-bottom: 20px; }
+        .important { color: #e74c3c; font-weight: bold; }
+        .details-box {
+            background-color: #f0f7ff;
+            border-left: 4px solid #007acc;
+            padding: 15px;
+            margin: 15px 0;
+            font-size: 0.95em;
+        }
+        code { background-color: #f0f0f0; padding: 2px 5px; border-radius: 3px; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; }
+        
+        /* 쿼리 블록 스타일 개선 */
+        pre { 
+            background-color: #1e1e1e; /* VS Code 기본 다크 테마 배경 */
+            color: #d4d4d4; /* 기본 텍스트 색상 */
+            padding: 20px; 
+            border-radius: 8px; 
+            overflow-x: auto; 
+            margin: 15px 0;
+            border: 1px solid #3e3e42; /* 약간 더 밝은 테두리 */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* 깊이감 */
+            font-size: 1.1em; /* 크기 약간 키움 */
+        }
+        
+        /* 쿼리 블록 내부 텍스트 스타일 */
+        pre code { 
+            background-color: transparent; 
+            padding: 0; 
+            color: inherit; 
+            font-family: inherit;
+        }
+
+        /* 쿼리 내 키워드 강조 (임시 - 단순화) */
+        /* 더 상세한 하이라이팅을 원하시면 Prism.js 등을 사용해야 합니다. */
+        pre code span.keyword { color: #569cd6; font-weight: bold; } /* SELECT, FROM */
+        pre code span.string { color: #ce9178; } /* 문자열/DUAL */
+
+        img { 
+            max-width: 100%; 
+            height: auto; 
+            display: block; 
+            margin: 20px 0; 
+            border: 1px solid #ddd; 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
+        }
+        ul, ol { padding-left: 25px; }
+        li { margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+
+    <h1>VS Code 에 Oracle SQL Developer Extension for VSCode 추가하기(Windows, macOS 공통)</h1>
+    <div class="env-info">
+        - Windows 11 Pro (25H2, 26200.7922) 기준<br>
+        - macOS Tahoe 26.3 이상 기준
+    </div>
+
+    <hr>
+
+    <h2>1. 확장 프로그램 설치</h2>
+    <ul>
+        <li>왼쪽 사이드바의 <strong>확장(Extensions)</strong> 아이콘(사각형 모양)을 클릭하거나 <code>Cmd + Shift + X</code> 클릭</li>
+        <li>검색창에 <code>Oracle SQL Developer</code> 입력</li>
+        <li>SQL Developer Extension for VS Code 항목의 <strong>[설치]</strong> 버튼 클릭
+            <ul>
+                <li class="important">주의: 게시자가 Oracle 인지 확인 필요.</li>
+            </ul>
+        </li>
+    </ul>
+    <img src="Oracle SOl Develcoer xtenson ior Vscode.png" alt="Oracle SQL Developer 확장 설치 화면">
+
+    <h2>2. 데이터베이스 연결 설정</h2>
+    <ul>
+        <li>설치가 완료되면 나오는 화면에서 <strong>[Create Connection]</strong> 클릭
+            <ul>
+                <li><strong>Connection Name</strong>: 연결 이름 설정</li>
+                <li><strong>User Info</strong>:
+                    <ul>
+                        <li>Role : Default</li>
+                        <li>Username : SYSTEM</li>
+                        <li>Password : Oracle 설치 시 입력한 비밀번호</li>
+                    </ul>
+                </li>
+                <li><strong>Connection Type</strong>:
+                    <ul>
+                        <li>Connection Type : Basic 또는 각자 설정</li>
+                        <li>Details > Hostname : localhost 또는 127.0.0.1 또는 서버 주소</li>
+                        <li>Details > Port : 기본 1521</li>
+                        <li>Details > Type : Service Name</li>
+                            <div class="details-box">
+                                <strong>용어 정리:</strong>
+                                    <ul>
+                                        <li><strong>SID (System IDentifier)</strong>: 데이터베이스 인스턴스를 식별하는 고유 이름. 싱글 서버 구조에서 주로 사용.</li>
+                                        <li><strong>Service Name</strong>: 네트워크 접속 시 사용하는 논리적 그룹 이름. RAC, 클라우드 환경의 표준 방식.</li>
+                                    </ul>
+                            </div>
+                        <li><strong>Details > Service Name</strong>: xe 또는 DB 서비스 명</li>
+                        <li><strong>[Test] > [Save]</strong> 또는 <strong>[Connect]</strong></li>
+                    </ul>
+                </li>
+            </ul>
+        </li>    
+    </ul>
+    <img src="image.png" alt="데이터베이스 연결 설정 화면">
+
+    <h2>3. 튜토리얼 및 주요 기능</h2>
+    <p><strong>Discover the SQL Worksheet</strong> 창 </p>
+    <ul>
+        <li><strong>Open a SQL worksheet</strong>: 빈 워크시트를 열기</li>
+        <li><strong>Attach/Detach Connection</strong>: 현재 파일을 특정 데이터베이스 서버와 연결(바인딩)</li>
+        <li><strong>Run Statement</strong>: 현재 커서가 위치한 단 하나의 명령문만 실행</li>
+        <li><strong>Run Script</strong>: 워크시트의 모든 명령어(SQL 및 PL/SQL)를 순차적으로 일괄 실행</li>
+        <li><strong>Run in SQLcl</strong>: VS Code 내장 터미널에서 SQLcl 도구를 통해 실행</li>
+        <li><strong>Explain Plan (실행 계획 확인)</strong>: Oracle 엔진이 데이터를 찾아올 경로를 미리 계산한 지도를 표시</li>
+        <li><strong>Review your executed statements (SQL History)</strong>: 이전에 실행했던 SQL 문장 기록 확인</li>
+    </ul>
+
+    <h2>4. 쿼리 테스트</h2>
+    <ol>
+        <li>VS Code 왼쪽 액티비티 바의 <strong>Oracle SQL Developer</strong> 아이콘 클릭</li>
+        <li>CONNECTIONS에 생성된 DB를 우클릭하고 <strong>Open SQL Worksheet</strong> 선택</li>
+        <li>워크시트 창에 SQL 쿼리 입력:
+            <pre><code><span class="keyword">SELECT</span> SYSDATE <span class="keyword">FROM</span> <span class="string">DUAL</span>;</code></pre>
+        </li>
+        <li>쿼리에 커서를 두고 <code>Ctrl+Enter</code>(Windows) 또는 <code>Command+Enter</code>(macOS)로 실행</li>
+    </ol>
+    <img src="image-1.png" alt="쿼리 실행 테스트 결과">
+
+    <h3>sql 파일에서 실행 시</h3>
+    <ol>
+        <li>sql 파일을 실행시키고 편집기 우측 하단 상태 표시줄의 <strong>No Connection Attached</strong> 부분을 클릭</li>
+        <li>연결 목록에서 실행하고자 하는 DB를 선택하여 연결</li>
+        <li><code>Ctrl+Enter</code>(Windows) 또는 <code>Command+Enter</code>(macOS)로 쿼리 실행</li>
+    </ol>
+
+</body>
+</html>
