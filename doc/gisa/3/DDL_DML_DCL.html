@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DDL, DML, DCL 정리</title>
+  <style>
+    :root {
+      --border-color: #333;
+      --bg-light: #f9f9f9;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+      background-color: var(--bg-light);
+      color: #333;
+    }
+    .container {
+      max-width: 800px;
+      width: 100%;
+      background: white;
+      border: 1px solid var(--border-color);
+      padding: 40px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    h1 {
+      border-bottom: 2px solid var(--border-color);
+      padding-bottom: 10px;
+      font-size: 1.8rem;
+      margin-bottom: 30px;
+    }
+    h2 {
+      font-size: 1.4rem;
+      margin-top: 30px;
+      color: #2c3e50;
+    }
+    ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+    .main-list > li {
+      margin-bottom: 40px;
+    }
+    .description {
+      margin-bottom: 15px;
+      padding-left: 5px;
+    }
+    .sub-list {
+      padding-left: 25px;
+      list-style-type: disc;
+    }
+    .sub-list li {
+      margin-bottom: 8px;
+    }
+    strong {
+      color: #e67e22;
+    }
+    code {
+      background-color: #eee;
+      padding: 2px 4px;
+      border-radius: 3px;
+      font-family: Consolas, monospace;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>DDL, DML, DCL</h1>
+
+    <ul class="main-list">
+      <li>
+        <h2>1. DDL (Data Definition Language, 데이터 정의어)</h2>
+        <p class="description">- 데이터베이스의 구조를 생성, 변경, 삭제할 때 사용하며, 실행 시 데이터베이스에 즉시 반영(Auto Commit)됨</p>
+        <ul class="sub-list">
+          <li><code>CREATE</code>: 테이블, 뷰, 인덱스 등 새로운 객체를 생성</li>
+          <li><code>ALTER</code>: 기존 객체의 구조를 변경(컬럼 추가, 타입 변경 등)</li>
+          <li><code>DROP</code>: 객체를 완전히 삭제</li>
+          <li><code>TRUNCATE</code>: 테이블의 모든 데이터를 삭제하지만, 테이블 구조는 남겨둠</li>
+        </ul>
+      </li>
+
+      <li>
+        <h2>2. DML (Data Manipulation Language, 데이터 조작어)</h2>
+        <p class="description">- 정의된 테이블 안에 데이터를 넣고 수정하고 조회할 때 사용. DML은 DDL과 달리 실행 후 COMMIT(확정)이나 ROLLBACK(취소)을 통해 작업 내용을 제어할 수 있음</p>
+        <ul class="sub-list">
+          <li><code>SELECT</code>: 데이터를 조회</li>
+          <li><code>INSERT</code>: 새로운 데이터를 삽입</li>
+          <li><code>UPDATE</code>: 기존 데이터를 수정</li>
+          <li><code>DELETE</code>: 데이터를 삭제</li>
+        </ul>
+      </li>
+
+      <li>
+        <h2>3. DCL (Data Control Language, 데이터 제어어)</h2>
+        <p class="description">- 데이터베이스에 접근하는 권한을 관리하거나 작업의 무결성을 보장하기 위해 사용</p>
+        <ul class="sub-list">
+          <li><code>GRANT</code>: 사용자에게 특정 작업 권한을 부여</li>
+          <li><code>REVOKE</code>: 부여했던 권한을 회수</li>
+          <li><code>COMMIT</code>: 작업한 내용을 데이터베이스에 영구적으로 반영</li>
+          <li><code>ROLLBACK</code>: 작업 중 오류가 발생했거나 취소하고 싶을 때 마지막 커밋 상태로 되돌림</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</body>
+</html>
