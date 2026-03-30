@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CUBRID DB 설치 및 설정(Windows 로컬)</title>
+  <style>
+    :root {
+      --border-color: #333;
+      --bg-light: #f9f9f9;
+      --code-bg: #2d2d2d;
+      --code-text: #f8f8f2;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+      background-color: var(--bg-light);
+      color: #333;
+    }
+    .container {
+      max-width: 850px;
+      width: 100%;
+      background: white;
+      border: 1px solid var(--border-color);
+      padding: 40px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    h1 {
+      border-bottom: 2px solid var(--border-color);
+      padding-bottom: 10px;
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+    }
+    h2 {
+      font-size: 1.4rem;
+      margin-top: 35px;
+      color: #2c3e50;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 5px;
+    }
+    h3 {
+      font-size: 1.15rem;
+      margin-top: 25px;
+      color: #2980b9;
+    }
+    .env-info {
+      margin-bottom: 20px;
+      font-size: 0.95rem;
+    }
+    ul, ol {
+      padding-left: 25px;
+      margin-bottom: 20px;
+    }
+    li {
+      margin-bottom: 10px;
+    }
+    pre {
+      background-color: var(--code-bg);
+      color: var(--code-text);
+      padding: 15px;
+      border-radius: 5px;
+      overflow-x: auto;
+      font-family: 'Consolas', monospace;
+      font-size: 0.9rem;
+      margin: 15px 0;
+    }
+    code {
+      background-color: #f1f1f1;
+      padding: 2px 4px;
+      border-radius: 3px;
+      font-family: Consolas, monospace;
+    }
+    .img-container {
+      margin: 15px 0;
+      text-align: left;
+    }
+    .img-container img {
+      max-width: 100%;
+      height: auto;
+      border: 1px solid #ddd;
+    }
+    strong {
+      color: #d35400;
+    }
+    hr {
+      border: 0;
+      border-top: 1px solid #ccc;
+      margin: 30px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>CUBRID DB 설치 및 설정(Windows 로컬)</h1>
+    
+    <div class="env-info">
+      - OS : Windows 11 Pro(25H2, 26200.8039)<br>
+      - 설치 버전 : CUBRID 11.4
+    </div>
+
+    <hr>
+
+    <h2>1. CUBRID 11.4 엔진 설치(Windows 11 Pro 기준)</h2>
+    <ol>
+      <li>
+        설치파일 다운로드 및 실행
+        <ul>
+          <li>다운로드 : <a href="https://www.cubrid.com/downloads" target="_blank">https://www.cubrid.com/downloads</a></li>
+          <li>Windows의 PC보호 창이 뜰 경우 > <strong>[추가정보] > [실행]</strong></li>
+        </ul>
+        <div class="img-container"><img src="H CUBRID.png" alt="CUBRID Download"></div>
+        <div class="img-container"><img src="Windows의 PC 보호.png" alt="Windows Protection"></div>
+      </li>
+      <li>
+        Java Runtime(JRE) 관련 사항
+        <ul>
+          <li>JRE 1.8 버전 또는 그 이상(64bit) 필요</li>
+          <li>SSL 및 Java Stored Procedure 기능을 사용하려면 자바 보안 라이브러리가 필수적임</li>
+          <li>당장 자바가 없어도 DB 엔진 설치는 가능하나, 위 기능 사용 시 추후 반드시 설치 필요</li>
+        </ul>
+      </li>
+      <li>[OK] 후, [Next] > 라이센스 동의 체크 후 [Next]</li>
+      <li>설치 경로 지정: demodb 설치 여부를 선택하고 <strong>[Next]</strong></li>
+      <li><strong>[Install]</strong>을 클릭하여 설치를 진행하고 <strong>[Finish]</strong> (Service Tray 실행 여부 선택)</li>
+      <li>
+        환경 변수 확인 (설정 > 시스템 > 정보 > 고급 시스템 설정)
+        <ul>
+          <li>시스템 변수 : <code>CUBRID</code>, <code>CUBRID_DATABASE</code> 등록 확인</li>
+          <li>Path 변수 : <code>C:\CUBRID\cci\bin</code>, <code>C:\CUBRID\bin\</code> 등록 확인</li>
+        </ul>
+      </li>
+      <li>
+        설치 확인
+        <pre># cubrid --version 입력 또는 CUBRID 입력</pre>
+      </li>
+    </ol>
+
+    <h2>2. CUBRID Admin 12.0(관리용) 설치</h2>
+    <ol>
+      <li>설치파일 다운로드 및 압축해제 : CUBRID Tools 항목에서 64bit 버전 다운로드</li>
+      <li><code>cubridadmin.exe</code> 파일 실행 (PC 보호 창 발생 시 추가정보 > 실행)</li>
+    </ol>
+
+    <h2>3. DB 연결 설정</h2>
+    <p>워크스페이스 선택 후 아래 방법 중 하나로 연결합니다.</p>
+    
+    <h3>방법1. localhost 편집</h3>
+    <ol>
+      <li>Hosts 화면의 localhost 우클릭 > <strong>[호스트 정보 편집]</strong></li>
+      <li>
+        Edit host 설정
+        <ul>
+          <li>CM 비밀번호 입력 (초기 비밀번호: <code>admin</code>)</li>
+          <li>드라이버 버전: <code>CUBRID-JDBC-11.3.2.0053</code> 선택</li>
+          <li>[연결 점검] > 성공 확인 후 [연결] > 비밀번호 변경 진행</li>
+        </ul>
+      </li>
+      <li>데이터베이스 목록 확인 후 해당 DB 우클릭 > 데이터베이스 로그인 (DB 시작 필요 시 예 클릭)</li>
+    </ol>
+
+    <h3>방법2. 새 호스트 추가</h3>
+    <ul>
+      <li>호스트 이름(Test), 주소(127.0.0.1), 포트(8001), 사용자(admin) 등 정보 입력 후 연결</li>
+    </ul>
+
+    <h2>4. 기타 참고</h2>
+    <p>매뉴얼 참고 : <a href="https://www.cubrid.org/manual/ko/11.4/" target="_blank">https://www.cubrid.org/manual/ko/11.4/</a></p>
+  </div>
+</body>
+</html>
