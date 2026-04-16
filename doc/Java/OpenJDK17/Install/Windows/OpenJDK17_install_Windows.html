@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OpenJDK 17 (Windows) 설치</title>
+  <style>
+    :root {
+      --primary-color: #5382a1;
+      --accent-color: #e76f51;
+      --bg-color: #f8f9fa;
+      --container-bg: #ffffff;
+      --text-main: #333;
+      --border-color: #dee2e6;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.7;
+      color: var(--text-main);
+      background-color: var(--bg-color);
+      display: flex;
+      justify-content: center;
+      padding: 40px 20px;
+      margin: 0;
+    }
+    .container {
+      max-width: 850px;
+      width: 100%;
+      background: var(--container-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 40px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+    .version-tag {
+      font-size: 0.9rem;
+      color: #6c757d;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #eee;
+    }
+    h2 {
+      font-size: 1.4rem;
+      color: var(--primary-color);
+      margin-top: 35px;
+      border-left: 5px solid var(--primary-color);
+      padding-left: 15px;
+    }
+    ol {
+      padding-left: 20px;
+    }
+    li {
+      margin-bottom: 15px;
+      font-weight: 500;
+    }
+    li ul, li ol {
+      font-weight: normal;
+      margin-top: 10px;
+    }
+    .img-box {
+      margin: 15px 0;
+      background: #fafafa;
+      border: 1px solid #eee;
+      padding: 10px;
+      text-align: center;
+    }
+    .img-box img {
+      max-width: 100%;
+      height: auto;
+      border: 1px solid #ddd;
+    }
+    code {
+      background-color: #f1f1f1;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: 'Consolas', monospace;
+      font-weight: bold;
+      color: #d63384;
+    }
+    .highlight {
+      font-weight: bold;
+      color: var(--accent-color);
+    }
+    pre {
+      background: #2d2d2d;
+      color: #f8f8f2;
+      padding: 15px;
+      border-radius: 5px;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="version-tag">
+      - windows 11 pro 24H2 26100.4946 기준
+    </div>
+
+    <ol>
+      <li>다운로드 URL : <a href="https://jdk.java.net/archive/" target="_blank">https://jdk.java.net/archive/</a></li>
+      
+      <li>OpenJDK-17.0.2_windows-x64_bin.zip 다운로드
+        <div class="img-box"><img src="image.png" alt="OpenJDK download"></div>
+      </li>
+
+      <li>JAVA 폴더 생성
+        <ul>
+          <li>예) 경로 : <code>H:\dev\JAVA</code></li>
+        </ul>
+      </li>
+
+      <li>파일 압축 해제
+        <div class="img-box"><img src="image-1.png" alt="unzip files"></div>
+      </li>
+
+      <li>시스템 환경 변수 설정
+        <ol>
+          <li>Windows 11 Pro 기준 : <strong>설정 > 시스템 > 정보 > 고급 시스템 설정</strong>
+            <div class="img-box"><img src="image-2.png" alt="system settings"></div>
+          </li>
+          <li>환경 변수 클릭
+            <div class="img-box"><img src="image-3.png" alt="environment variables button"></div>
+          </li>
+          <li>시스템 변수 > 새로 만들기
+            <div class="img-box"><img src="image-4.png" alt="new system variable"></div>
+            <ul>
+              <li><strong>JAVA_HOME 환경변수 생성</strong>
+                <ul>
+                  <li>변수 이름 : <code class="highlight">JAVA_HOME</code></li>
+                  <li>변수 값 : [디렉터리 찾아보기] JDK(JAVA) 설치 경로
+                    <div class="img-box"><img src="image-5.png" alt="JAVA_HOME path"></div>
+                  </li>
+                </ul>
+              </li>
+              <li><strong>Path 환경 변수 설정</strong>
+                <ul>
+                  <li>편집 > 새로 만들기</li>
+                  <li><code class="highlight">%JAVA_HOME%\bin</code> 입력 후 최상단으로 이동(위로 이동) > 확인
+                    <div class="img-box"><img src="image-6.png" alt="path editing 1"></div>
+                    <div class="img-box"><img src="image-7.png" alt="path editing 2"></div>
+                  </li>
+                </ul>
+              </li>
+              <li><strong>CLASSPATH 환경 변수 생성 및 설정</strong>
+                <ul>
+                  <li>변수 이름 : <code class="highlight">CLASSPATH</code></li>
+                  <li>변수 값 : <code class="highlight">%JAVA_HOME%\lib</code>
+                    <div class="img-box"><img src="image-8.png" alt="classpath setup"></div>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ol>
+      </li>
+
+      <li>설치 확인 (명령 프롬프트/PowerShell)
+        <pre>java --version</pre>
+      </li>
+    </ol>
+  </div>
+</body>
+</html>
