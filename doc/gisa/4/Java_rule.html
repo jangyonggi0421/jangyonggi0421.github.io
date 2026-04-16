@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Java - 변수명 작성 규칙</title>
+  <style>
+    :root {
+      --primary-color: #5382a1; /* Java 관련 테마 색상 */
+      --text-color: #333;
+      --bg-color: #f4f7f6;
+      --container-bg: #ffffff;
+      --border-color: #dddddd;
+    }
+    body {
+      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.8;
+      color: var(--text-color);
+      background-color: var(--bg-color);
+      display: flex;
+      justify-content: center;
+      padding: 40px 20px;
+      margin: 0;
+    }
+    .container {
+      max-width: 700px;
+      width: 100%;
+      background: var(--container-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 40px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    h1 {
+      font-size: 1.6rem;
+      color: var(--primary-color);
+      border-bottom: 2px solid var(--primary-color);
+      padding-bottom: 10px;
+      margin-top: 0;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    li {
+      position: relative;
+      padding-left: 25px;
+      margin-bottom: 15px;
+      font-size: 1.05rem;
+    }
+    li::before {
+      content: "•";
+      color: var(--primary-color);
+      font-weight: bold;
+      position: absolute;
+      left: 0;
+      font-size: 1.2rem;
+    }
+    code {
+      background-color: #f0f0f0;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: 'Consolas', 'Monaco', monospace;
+      font-weight: bold;
+      color: #d63384;
+    }
+    .footer {
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px solid #eee;
+      font-size: 0.9rem;
+      color: #777;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Java - 변수명 작성 규칙</h1>
+    
+    <ul>
+      <li>영문자, 숫자, <code>_</code> 를 사용 가능하며, 대/소문자를 구분한다.</li>
+      <li>첫 글자는 영문자나 <code>_</code> 로 시작해야 하며, 숫자는 불가하다.</li>
+      <li>글자 수는 제한이 없으며, 공백 또는 특수문자는 사용할 수 없다.</li>
+      <li>예약어는 변수명으로 사용할 수 없다.</li>
+      <li>변수 선언 시 문장 끝에는 반드시 <code>;</code> (세미콜론) 로 마쳐야 한다.</li>
+    </ul>
+
+    <div class="footer">
+      Java Programming Standards
+    </div>
+  </div>
+</body>
+</html>
