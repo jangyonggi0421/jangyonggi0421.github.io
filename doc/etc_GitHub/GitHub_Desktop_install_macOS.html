@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GitHub Desktop 설치(macOS)</title>
+  <style>
+    :root {
+      --primary-color: #24292f; /* GitHub 테마 색상 */
+      --accent-color: #0969da;
+      --bg-color: #f6f8fa;
+      --container-bg: #ffffff;
+      --text-main: #1f2328;
+      --border-color: #d0d7de;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+      color: var(--text-main);
+      background-color: var(--bg-color);
+      display: flex;
+      justify-content: center;
+      padding: 40px 20px;
+      margin: 0;
+    }
+    .container {
+      max-width: 800px;
+      width: 100%;
+      background: var(--container-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 40px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    .version-info {
+      color: #636c76;
+      font-size: 0.9rem;
+      margin-bottom: 20px;
+    }
+    hr {
+      border: 0;
+      border-top: 1px solid var(--border-color);
+      margin: 25px 0;
+    }
+    h2 {
+      font-size: 1.25rem;
+      margin-top: 30px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #eee;
+    }
+    ol {
+      padding-left: 20px;
+    }
+    li {
+      margin-bottom: 15px;
+      font-weight: 500;
+    }
+    ul {
+      list-style-type: disc;
+      padding-left: 20px;
+      margin-top: 8px;
+      font-weight: 400;
+    }
+    code {
+      background-color: #afb8c133;
+      padding: 0.2em 0.4em;
+      border-radius: 6px;
+      font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
+      font-size: 85%;
+    }
+    .img-box {
+      margin: 15px 0;
+      border: 1px solid #d0d7de;
+      border-radius: 6px;
+      padding: 5px;
+      display: inline-block;
+      max-width: 100%;
+    }
+    .img-box img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+    .link {
+      color: var(--accent-color);
+      text-decoration: none;
+    }
+    .link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="version-info">
+      - macOS Tahoe 26.0.1 버전 기준
+    </div>
+
+    <hr>
+
+    <ol>
+      <li>
+        우선 Git 설치 확인 필요
+        <ul>
+          <li>터미널에 다음과 같이 입력: <code>-MacBookPro ~ % git --version</code></li>
+          <div class="img-box"><img src="image.png" alt="git version check"></div>
+          <li>macOS의 경우 기본적으로 Git이 설치되어 있음. 없을 경우 다음 <a href="https://git-scm.com/downloads" class="link">URL</a>을 통해 설치하고 진행</li>
+        </ul>
+      </li>
+
+      <li>다운로드 URL : <a href="https://github.com/apps/desktop?locale=ko-KR" class="link">https://github.com/apps/desktop?locale=ko-KR</a></li>
+
+      <li>Download now 클릭
+        <div class="img-box"><img src="image-1.png" alt="download now button"></div>
+      </li>
+
+      <li>
+        M1, M2 등 Apple silicon 칩일 경우 Download for Apple silicon 클릭, 이 외 intel 칩일 경우 Download for Intel chip 클릭
+        <div class="img-box"><img src="image-2.png" alt="silicon vs intel choice"></div>
+        <ul>
+          <li>Windows의 경우 하단 Download for Windows 클릭</li>
+        </ul>
+      </li>
+
+      <li>파일 다운로드 후 열기 버튼 클릭</li>
+      <li>GitHub 계정으로 로그인(Sign in to GitHub.com)
+        <div class="img-box"><img src="image-3.png" alt="sign in to github"></div>
+      </li>
+
+      <li>데스크톱 인증(Authorize desktop)
+        <div class="img-box"><img src="image-4.png" alt="authorize desktop"></div>
+      </li>
+
+      <li>
+        Git 설정
+        <ul>
+          <li>Use my GitHub account name and email address(내 GitHub 계정명과 이메일 주소 사용) 선택하고 이메일 주소를 입력하고 [Finish] 클릭</li>
+        </ul>
+        <div class="img-box"><img src="image-5.png" alt="git profile configuration"></div>
+      </li>
+
+      <li>Move and Restart</li>
+      <li>기존 생성된 Repository(저장소) 선택(없을 경우 Repository 생성)</li>
+      <li>[Clone ~~~] 클릭
+        <div class="img-box"><img src="image-6.png" alt="clone repository"></div>
+      </li>
+
+      <li>[Clone] 또는 필요한 설정이 있을 경우 수정하고 [Clone]
+        <div class="img-box"><img src="image-7.png" alt="clone configuration"></div>
+      </li>
+
+      <li>
+        설치 및 연결 완료, 테스트
+        <div class="img-box"><img src="image-8.png" alt="installation test 1"></div>
+        <div class="img-box"><img src="image-9.png" alt="installation test 2"></div>
+      </li>
+    </ol>
+  </div>
+</body>
+</html>
