@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Linux / Unix 명령어 정리</title>
+  <style>
+    :root {
+      --primary-blue: #2c3e50;
+      --accent-blue: #3498db;
+      --bg-color: #f5f7f9;
+      --container-bg: #ffffff;
+      --text-main: #333333;
+      --border-color: #e1e4e8;
+    }
+    body {
+      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.8;
+      color: var(--text-main);
+      background-color: var(--bg-color);
+      display: flex;
+      justify-content: center;
+      padding: 40px 20px;
+      margin: 0;
+    }
+    .container {
+      max-width: 800px;
+      width: 100%;
+      background: var(--container-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 40px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+    }
+    h1 {
+      font-size: 1.8rem;
+      color: var(--primary-blue);
+      border-left: 8px solid var(--accent-blue);
+      padding-left: 20px;
+      margin-top: 0;
+      margin-bottom: 30px;
+      background: #f8f9fa;
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    li {
+      padding: 12px 15px;
+      margin-bottom: 8px;
+      border-bottom: 1px solid #f0f0f0;
+      transition: background 0.2s;
+    }
+    li:hover {
+      background-color: #fcfcfc;
+    }
+    li:last-child {
+      border-bottom: none;
+    }
+    code {
+      background-color: #e8f4fd;
+      color: #2980b9;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-family: 'Cascadia Code', 'Consolas', monospace;
+      font-weight: 600;
+      margin-right: 10px;
+    }
+    .description {
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Linux / Unix 명령어</h1>
+    
+    <ul>
+      <li><code>uname</code> <span class="description">: 시스템의 이름과 버전, 커널 버전 등 시스템 정보를 확인할 때 사용</span></li>
+      <li><code>cat</code> <span class="description">: 파일 내용 표시</span></li>
+      <li><code>chmod</code> <span class="description">: 파일 권한 설정</span></li>
+      <li><code>chown</code> <span class="description">: 소유자 변경</span></li>
+      <li><code>cp</code> <span class="description">: 복사</span></li>
+      <li><code>exec</code> <span class="description">: 새로운 프로세스 수행</span></li>
+      <li><code>find</code> <span class="description">: 파일 찾기</span></li>
+      <li><code>fork</code> <span class="description">: 새로운 프로세스 생성, 하위 프로세스 호출, 프로세스 복제</span></li>
+      <li><code>fsck</code> <span class="description">: 파일 시스템을 검사하고 보수</span></li>
+      <li><code>ls</code> <span class="description">: 현재 디렉터리 내의 파일 목록 확인</span></li>
+      <li><code>mount</code> <span class="description">: 파일 시스템 마운트</span></li>
+      <li><code>unmount</code> <span class="description">: 파일 시스템 마운트 해제</span></li>
+      <li><code>rm</code> <span class="description">: 삭제</span></li>
+      <li><code>cd</code> <span class="description">: 디렉토리 이동</span></li>
+    </ul>
+  </div>
+</body>
+</html>
