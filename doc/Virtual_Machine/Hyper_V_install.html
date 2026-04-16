@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Microsoft Hyper-V 가상머신 설치</title>
+  <style>
+    :root {
+      --primary-blue: #0078d4;
+      --text-main: #333333;
+      --bg-color: #f5f7f9;
+      --container-bg: #ffffff;
+      --border-color: #dcdde1;
+      --accent-bg: #f8f9fa;
+    }
+    body {
+      font-family: 'Segoe UI', SegoeUI, "Microsoft YaHei", sans-serif;
+      line-height: 1.7;
+      color: var(--text-main);
+      background-color: var(--bg-color);
+      display: flex;
+      justify-content: center;
+      padding: 40px 20px;
+      margin: 0;
+    }
+    .container {
+      max-width: 800px;
+      width: 100%;
+      background: var(--container-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 40px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+    .info-header {
+      background-color: var(--accent-bg);
+      border-left: 5px solid var(--primary-blue);
+      padding: 15px 20px;
+      margin-bottom: 30px;
+      font-size: 0.95rem;
+    }
+    .info-header p {
+      margin: 5px 0;
+    }
+    hr {
+      border: 0;
+      border-top: 1px solid #eee;
+      margin: 30px 0;
+    }
+    ol {
+      padding-left: 20px;
+    }
+    li {
+      margin-bottom: 20px;
+      font-weight: 500;
+    }
+    .img-placeholder {
+      margin: 15px 0;
+      padding: 10px;
+      background-color: #fcfcfc;
+      border: 1px dashed #ccc;
+      text-align: center;
+      color: #777;
+      font-size: 0.9rem;
+    }
+    .img-placeholder img {
+      max-width: 100%;
+      height: auto;
+      border: 1px solid #ddd;
+      margin-top: 10px;
+    }
+    .note {
+      margin-top: 30px;
+      padding: 20px;
+      background-color: #eef7ff;
+      border-radius: 6px;
+      font-size: 0.95rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="info-header">
+      <p>• [Windows 11 pro 24H2 26100.4946 버전 기준으로 작성되었습니다!]</p>
+      <p>• Hyper-V는 Windows Pro 및 Enterprise 버전만 지원함, Home 버전은 미지원함.</p>
+    </div>
+
+    <hr>
+
+    <ol>
+      <li>
+        [시작]메뉴에서 Windows 기능 켜기/끄기 검색 후 실행
+      </li>
+      <li>
+        Hyper-V를 찾아 체크
+        <div class="img-placeholder">
+          [Image: Hyper-V feature selection in Windows Features]
+          <br><img src="image.png" alt="Windows 기능 켜기/끄기">
+        </div>
+      </li>
+      <li>
+        [확인]버튼을 클릭
+        <div class="img-placeholder">
+          [Image: Confirming the changes]
+          <br><img src="image-1.png" alt="확인 버튼 클릭">
+        </div>
+      </li>
+      <li>PC 다시 시작</li>
+      <li>
+        설치 완료
+        <div class="img-placeholder">
+          [Image: Hyper-V installation completed]
+          <br><img src="image-2.png" alt="설치 완료">
+        </div>
+      </li>
+      <li>
+        기본적으로는 Windows 10 MSIX packaging environment, Ubuntu 18.04 LTS, Ubuntu 20.04 LTS, Ubuntu 22.04 LTS, Windows 11 개발 환경을 기본 제공하고 있음.
+      </li>
+    </ol>
+  </div>
+</body>
+</html>
