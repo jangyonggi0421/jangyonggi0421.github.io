@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Linux 에 NVidia 그래픽 카드 드라이버 설치</title>
+  <style>
+    :root {
+      --nvidia-green: #76b900;
+      --bg-color: #f8f9fa;
+      --text-main: #333;
+      --container-bg: #ffffff;
+      --code-bg: #1e1e1e;
+      --code-text: #d4d4d4;
+      --border-color: #dee2e6;
+    }
+    body {
+      font-family: 'Segoe UI', 'Apple SD Gothic Neo', sans-serif;
+      line-height: 1.7;
+      color: var(--text-main);
+      background-color: var(--bg-color);
+      display: flex;
+      justify-content: center;
+      padding: 40px 20px;
+      margin: 0;
+    }
+    .container {
+      max-width: 900px;
+      width: 100%;
+      background: var(--container-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 40px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+    h1 {
+      font-size: 2rem;
+      color: #000;
+      border-bottom: 3px solid var(--nvidia-green);
+      padding-bottom: 10px;
+      margin-top: 0;
+    }
+    h2 {
+      font-size: 1.5rem;
+      color: var(--nvidia-green);
+      margin-top: 40px;
+      border-left: 5px solid var(--nvidia-green);
+      padding-left: 15px;
+    }
+    h3 {
+      font-size: 1.25rem;
+      color: #e63946;
+      margin-top: 30px;
+    }
+    .meta-info {
+      background: #f1f3f5;
+      padding: 15px;
+      border-radius: 6px;
+      margin: 20px 0;
+      font-size: 0.95rem;
+    }
+    pre {
+      background-color: var(--code-bg);
+      color: var(--code-text);
+      padding: 18px;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-family: 'Consolas', 'Monaco', monospace;
+      font-size: 0.9rem;
+      margin: 15px 0;
+    }
+    code {
+      background-color: #f1f1f1;
+      padding: 2px 5px;
+      border-radius: 4px;
+      color: #d63384;
+    }
+    pre code {
+      background: none;
+      color: inherit;
+      padding: 0;
+    }
+    ul, ol {
+      padding-left: 25px;
+    }
+    li {
+      margin-bottom: 12px;
+    }
+    .error-box {
+      border: 1px solid #ffccd5;
+      background-color: #fff5f5;
+      padding: 20px;
+      border-radius: 8px;
+      margin: 20px 0;
+    }
+    strong {
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Linux 에 NVidia 그래픽 카드 드라이버 설치</h1>
+    
+    <div class="meta-info">
+      CUDA 등을 이용하기 위한 Nvidia 그래픽 카드 드라이버 설치<br>
+      <strong>현재 커널 버전 :</strong> 5.14.0-611.5.1.el9_7.x86_64
+    </div>
+
+    <h2>1. 기본 설치 과정</h2>
+    
+    <ol>
+      <li><strong>커널 업데이트 및 개발 도구 설치</strong>
+        <pre><code># root 로그인
+su
+
+# 커널 업데이트
+sudo dnf update -y
+
+# 개발 도구 설치
+sudo dnf groupinstall "Development Tools" -y
+sudo dnf install kernel-devel kernel-headers -y</code></pre>
+      </li>
+
+      <li><strong>ELRepo 저장소 등록 및 드라이버 설치</strong>
+        <pre><code># ELRepo 저장소 등록
+sudo rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org
+
+# 드라이버 설치
+sudo dnf install https://www.elrepo.org/elrepo-release-9.el9.elrepo.noarch.rpm -y
+sudo dnf install kmod-nvidia -y</code></pre>
+      </li>
+
+      <li><strong>재부팅 및 확인</strong>
+        <ul>
+          <li>시스템을 재부팅한 후 <code>nvidia-smi</code> 명령어를 실행합니다.</li>
+          <li><strong>결과:</strong> GPU 정보, 드라이버 버전, CUDA 버전이 화면에 출력되면 설치 성공입니다.</li>
+        </ul>
+      </li>
+    </ol>
+
+    <h2>2. 오류 해결 (Troubleshooting)</h2>
+    
+    <div class="meta-info">
+      <strong>현재 커널 확인 명령어:</strong> <code>uname -r</code><br>
+      (확인된 버전: 5.14.0-611.5.1.el9_7.x86_64)
+    </div>
+
+    <div class="error-box">
+      <h3>1) 부팅 시 검은 화면(Black Screen) 오류</h3>
+      <ul>
+        <li><strong>현상:</strong> 부팅 중 <code>Crash recovery kernel arming</code> 메시지와 함께 멈춤.</li>
+        <li><strong>원인:</strong> Secure Boot 활성화 및 특정 최신 커널과 하드웨어(GPU/kdump) 간의 메모리 주소 충돌.</li>
+        <li><strong>해결책:</strong>
+          <ol>
+            <li><strong>BIOS 설정:</strong> F2 진입 -> Security -> Supervisor Password 설정 -> Secure Boot Control을 <strong>OFF</strong>로 변경.</li>
+            <li><strong>커널 선택:</strong> 최신 버전 대신 하드웨어 호환성이 검증된 5.14.0...5.1 버전으로 부팅 시도.</li>
+            <li><strong>kdump 비활성화:</strong> 불필요한 메모리 점유 및 충돌 방지를 위해 서비스 중지.</li>
+          </ol>
+          <pre><code>sudo systemctl disable --now kdump</code></pre>
+        </li>
+      </ul>
+    </div>
+
+    <div class="error-box">
+      <h3>2) NVIDIA 드라이버 저장소 충돌 해결</h3>
+      <ul>
+        <li><strong>현상:</strong> ELRepo(580 버전)와 RPM Fusion(570 버전) 패키지 간의 파일 소유권 충돌 발생.</li>
+        <li><strong>원인:</strong> 서로 다른 저장소의 드라이버 라이브러리 파일들이 같은 경로(<code>/usr/lib64/</code>)에서 충돌.</li>
+        <li><strong>해결책:</strong> 기존 잔재를 완전히 제거하고 단일 저장소(RPM Fusion)로 통합합니다.
+          <pre><code># 1. 기존 충돌 패키지 강제 삭제
+sudo dnf remove *nvidia* *elrepo* -y
+
+# 2. 필수 저장소(EPEL, RPM Fusion) 등록
+sudo dnf install epel-release https://mirrors.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-9.noarch.rpm -y</code></pre>
+        </li>
+      </ul>
+    </div>
+
+    <div class="error-box">
+      <h3>3) 커널 맞춤형 드라이버 빌드</h3>
+      <p>특정 커널 버전에서 드라이버가 인식되지 않을 경우, 현재 커널 버전에 맞춰 드라이버를 다시 빌드해야 할 수 있습니다. <code>kernel-devel</code>과 <code>kernel-headers</code>가 현재 실행 중인 커널 버전과 일치하는지 반드시 확인하십시오.</p>
+    </div>
+  </div>
+</body>
+</html>
