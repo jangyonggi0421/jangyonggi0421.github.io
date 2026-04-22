@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SSH - macOS 설정 (Rocky Linux 9)</title>
+  <style>
+    :root {
+      --primary-blue: #3498db;
+      --secondary-dark: #2c3e50;
+      --bg-color: #f4f7f6;
+      --text-main: #333;
+      --container-bg: #ffffff;
+      --code-bg: #1e1e1e;
+      --code-text: #d4d4d4;
+      --border-color: #dee2e6;
+      --accent-orange: #e67e22;
+    }
+    body {
+      font-family: 'Segoe UI', 'Apple SD Gothic Neo', sans-serif;
+      line-height: 1.7;
+      color: var(--text-main);
+      background-color: var(--bg-color);
+      display: flex;
+      justify-content: center;
+      padding: 40px 20px;
+      margin: 0;
+    }
+    .container {
+      max-width: 900px;
+      width: 100%;
+      background: var(--container-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 40px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+    h1 {
+      font-size: 2rem;
+      color: var(--secondary-dark);
+      border-bottom: 3px solid var(--primary-blue);
+      padding-bottom: 10px;
+      margin-top: 0;
+    }
+    h2 {
+      font-size: 1.5rem;
+      color: var(--primary-blue);
+      margin-top: 40px;
+      border-left: 5px solid var(--primary-blue);
+      padding-left: 15px;
+    }
+    h3 {
+      font-size: 1.25rem;
+      color: var(--secondary-dark);
+      margin-top: 30px;
+      background: #f8f9fa;
+      padding: 5px 10px;
+      border-radius: 4px;
+    }
+    .meta-info {
+      background: #eef7ff;
+      padding: 15px;
+      border-radius: 6px;
+      margin: 20px 0;
+      font-size: 0.95rem;
+      border-left: 4px solid var(--primary-blue);
+    }
+    pre {
+      background-color: var(--code-bg);
+      color: var(--code-text);
+      padding: 18px;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-family: 'Consolas', 'Monaco', monospace;
+      font-size: 0.9rem;
+      margin: 15px 0;
+    }
+    code {
+      background-color: #f1f1f1;
+      padding: 2px 5px;
+      border-radius: 4px;
+      color: #d63384;
+    }
+    pre code {
+      background: none;
+      color: inherit;
+      padding: 0;
+    }
+    ul, ol {
+      padding-left: 25px;
+    }
+    li {
+      margin-bottom: 12px;
+    }
+    .img-box {
+      margin: 20px 0;
+      padding: 10px;
+      background-color: #fafafa;
+      border: 1px solid #eee;
+      text-align: center;
+    }
+    .img-box img {
+      max-width: 100%;
+      height: auto;
+      border: 1px solid #ddd;
+    }
+    .warning {
+      color: var(--accent-orange);
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>SSH - macOS</h1>
+    
+    <div class="meta-info">
+      <strong>접속 OS :</strong> Rocky Linux 9 (커널 버전: 5.14.0-427.5.1.el9_4.x86_64) 기반
+    </div>
+
+    <h2>1단계. ssh 설정 (Linux 서버측)</h2>
+    
+    <h3>1. openssh-server 패키지 설치 확인</h3>
+    <pre><code># 1. 패키지 업데이트
+sudo dnf update -y
+
+# 2. 설치 확인
+rpm -qa | grep openssh-server
+# 결과 : openssh-server-8.7p1-47.el9_7.rocky.0.1.x86_64 가 나오면 설치되어 있음
+
+# 2-1. 미설치 시 아래 명령어로 설치 가능
+sudo dnf install openssh-server -y</code></pre>
+
+    <h3>2. ssh 서비스 활성화</h3>
+    <pre><code># 1. 서비스 활성화 및 즉시 시작
+sudo systemctl enable --now sshd
+
+# 2. ssh 상태 확인 (결과가 Active: active (running) 일 경우 활성화)
+sudo systemctl status sshd</code></pre>
+
+    <h3>3. 방화벽 설정</h3>
+    <pre><code># 1. 방화벽 확인 (services 항목에 ssh 확인)
+sudo firewall-cmd --list-all
+
+# 1-1. 없을 경우 ssh 추가
+sudo firewall-cmd --permanent --add-service=ssh
+
+# 2. 즉시 반영
+sudo firewall-cmd --reload</code></pre>
+
+    <h3>4. ssh 인증키 접속 설정</h3>
+    <p>Rocky Linux 9부터는 root 계정의 비밀번호 접속이 기본적으로 제한될 수 있으므로 설정을 확인합니다.</p>
+    <pre><code># sshd 설정 파일 수정
+sudo vi /etc/ssh/sshd_config
+
+# 아래 항목들의 주석(#)을 해제하여 활성화 (vi 에디터에서 해당 라인 확인)
+# 45번 라인 부근: PubkeyAuthentication yes
+# 49번 라인 부근: AuthorizedKeyFile .ssh/authorized_keys
+# 65번 라인 부근: PasswordAuthentication yes (필요 시)
+
+# 수정 후 esc -> :wq 입력하여 저장</code></pre>
+
+    <h2>2단계. ssh 인증키 생성 및 등록 (macOS 클라이언트측)</h2>
+
+    <h3>1. ssh 인증키 생성</h3>
+    <pre><code># 1. SSH 인증키 생성 (RSA 4096비트)
+ssh-keygen -t rsa -b 4096
+
+# -t : 키 타입(RSA), -b : 비트 길이
+# 질문 프롬프트 발생 시:
+# - 파일 경로: Enter (기본값 사용)
+# - Passphrase: Enter (공백 처리 가능)
+
+# 2. 생성된 키 파일 확인
+ls -al ~/.ssh
+# id_rsa (비공개 키 - 노출 금지)
+# id_rsa.pub (공개 키)</code></pre>
+    <div class="img-box">
+      <img src="Attachments/7984D235-AA7F-409B-88EF-3CA21DCDB372.png" alt="SSH Key Generation Result">
+    </div>
+
+    <h3>2. ssh 인증키 등록</h3>
+    <p>생성한 공개키(<code>id_rsa.pub</code>)를 접속하려는 서버의 <code>authorized_keys</code> 파일에 등록해야 합니다.</p>
+    <pre><code># macOS에서 서버로 키 복사 (가장 간편한 방법)
+ssh-copy-id root@<서버_IP_주소>
+
+# 또는 수동 등록 시 서버의 ~/.ssh/authorized_keys 파일에 id_rsa.pub 내용 추가</code></pre>
+
+    <div class="meta-info">
+      <span class="warning">주의:</span> 비공개 키(<code>id_rsa</code>)는 절대로 타인에게 노출되어서는 안 되며, 안전한 곳에 보관하십시오.
+    </div>
+  </div>
+</body>
+</html>
