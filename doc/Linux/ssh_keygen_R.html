@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SSH 키 등록 오류 발생 시 조치 방법</title>
+  <style>
+    :root {
+      --error-red: #e63946;
+      --warning-amber: #ffb703;
+      --primary-blue: #3498db;
+      --secondary-dark: #2c3e50;
+      --bg-color: #f8f9fa;
+      --container-bg: #ffffff;
+      --code-bg: #1e1e1e;
+      --code-text: #d4d4d4;
+      --border-color: #dee2e6;
+    }
+    body {
+      font-family: 'Segoe UI', 'Apple SD Gothic Neo', sans-serif;
+      line-height: 1.7;
+      color: #333;
+      background-color: var(--bg-color);
+      display: flex;
+      justify-content: center;
+      padding: 40px 20px;
+      margin: 0;
+    }
+    .container {
+      max-width: 900px;
+      width: 100%;
+      background: var(--container-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 40px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+    h1 {
+      font-size: 2rem;
+      color: var(--secondary-dark);
+      border-bottom: 3px solid var(--error-red);
+      padding-bottom: 10px;
+      margin-top: 0;
+    }
+    h2 {
+      font-size: 1.5rem;
+      color: var(--error-red);
+      margin-top: 40px;
+      border-left: 5px solid var(--error-red);
+      padding-left: 15px;
+      background: #fff5f5;
+    }
+    .warning-banner {
+      background-color: #000;
+      color: var(--warning-amber);
+      padding: 20px;
+      border-radius: 8px;
+      font-family: 'Consolas', monospace;
+      font-size: 0.9rem;
+      border: 2px solid var(--warning-amber);
+      margin: 20px 0;
+      white-space: pre-wrap;
+      text-align: center;
+    }
+    .description-box {
+      background: #eef7ff;
+      padding: 15px 20px;
+      border-radius: 6px;
+      margin: 20px 0;
+      font-weight: bold;
+      border-left: 4px solid var(--primary-blue);
+    }
+    pre {
+      background-color: var(--code-bg);
+      color: var(--code-text);
+      padding: 18px;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-family: 'Consolas', 'Monaco', monospace;
+      font-size: 0.9rem;
+      margin: 15px 0;
+    }
+    code {
+      background-color: #f1f1f1;
+      padding: 2px 5px;
+      border-radius: 4px;
+      color: #d63384;
+    }
+    pre code {
+      background: none;
+      color: inherit;
+      padding: 0;
+    }
+    ul, ol {
+      padding-left: 25px;
+    }
+    li {
+      margin-bottom: 15px;
+    }
+    .platform-label {
+      font-weight: bold;
+      color: var(--primary-blue);
+      margin-top: 10px;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>SSH 키 등록 오류 발생 시</h1>
+    
+    <h2>오류 내용</h2>
+    <div class="warning-banner">
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@    WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!     @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!
+... 중략 ...
+Host key for &lt;IP주소&gt; has changed and you have requested strict checking.
+Host key verification failed.</div>
+
+    <div class="description-box">
+      SSH가 이전에 저장해 둔 서버의 호스트 키와, 지금 접속하려는 서버의 호스트 키가 다를 때 발생합니다.
+    </div>
+
+    <h2>조치법</h2>
+    
+    <ol>
+      <li><strong>알려진 호스트 키 삭제</strong>
+        <p>사용자의 로컬 컴퓨터에 저장된 <code>known_hosts</code> 파일에서 특정 IP 주소와 관련된 이전 호스트 키를 삭제합니다.</p>
+        <pre><code>ssh-keygen -R 192.168.0.1</code></pre>
+      </li>
+
+      <li><strong>SSH 키 다시 등록</strong>
+        <p><code>ssh-copy-id</code> 명령어를 사용하여 공개키 내용을 서버에 자동으로 추가합니다.</p>
+        <pre><code>ssh-copy-id [원격서버계정]@[원격지IP]
+
+# 예시:
+# ssh-copy-id user@123.123.11.1</code></pre>
+        <p>※ 패스워드를 입력하면 공개키가 서버의 <code>~/.ssh/authorized_keys</code> 파일에 등록됩니다.</p>
+      </li>
+
+      <li><strong>sshd 서비스 재시작</strong>
+        <p>설정을 적용하기 위해 각 운영체제에 맞는 명령어로 서비스를 재시작합니다.</p>
+        
+        <span class="platform-label">[Linux]</span>
+        <pre><code>sudo systemctl stop sshd
+sudo systemctl start sshd</code></pre>
+
+        <span class="platform-label">[macOS]</span>
+        <pre><code>sudo launchctl stop sshd
+sudo launchctl start sshd</code></pre>
+      </li>
+
+      <li><strong>최종 접속 테스트</strong>
+        <pre><code>ssh [원격서버계정]@[원격지IP]</code></pre>
+      </li>
+    </ol>
+  </div>
+</body>
+</html>
