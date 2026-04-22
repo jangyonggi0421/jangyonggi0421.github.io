@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Git 설치(Windows)</title>
+  <title>Git 설치(Windows) 전체 과정</title>
   <style>
     :root {
       --git-orange: #f05032;
@@ -41,13 +41,6 @@
       border-bottom: 4px solid var(--git-orange);
       padding-bottom: 10px;
       margin-top: 0;
-    }
-    h2 {
-      font-size: 1.4rem;
-      color: var(--git-orange);
-      margin-top: 35px;
-      border-left: 6px solid var(--git-orange);
-      padding-left: 15px;
     }
     .step-item {
       margin-bottom: 30px;
@@ -105,79 +98,112 @@
 </head>
 <body>
   <div class="container">
-    <h1>Git 설치(Windows)</h1>
+    <h1>Git 설치(Windows) 상세 17단계</h1>
     
     <div class="step-item">
       <span class="step-title">1. 다운로드</span>
-      <div class="description">
-        URL : <a href="https://git-scm.com/install/windows" target="_blank">https://git-scm.com/install/windows</a><br>
-        * <strong>Click here to download</strong> 클릭
-      </div>
-      <div class="img-box"><img src="git_1.png" alt="Download Page"></div>
+      <div class="description">URL: <a href="https://git-scm.com/install/windows" target="_blank">https://git-scm.com/install/windows</a> 접속 후 <strong>Click here to download</strong>를 클릭합니다.</div>
+      <div class="img-box"><img src="git_1.png" alt="Download"></div>
     </div>
 
     <div class="step-item">
-      <span class="step-title">2. 실행</span>
-      <div class="description">다운로드 된 <code>Git-2.52.0-64-bit.exe</code> 파일을 실행합니다.</div>
+      <span class="step-title">2. 설치 프로그램 실행</span>
+      <div class="description">다운로드된 <code>Git-2.52.0-64-bit.exe</code> 파일을 실행합니다.</div>
     </div>
 
     <div class="step-item">
-      <span class="step-title">3. 시작</span>
-      <div class="description"><strong>[Next]</strong> 버튼을 클릭하여 설치를 시작합니다.</div>
-      <div class="img-box"><img src="git_2.png" alt="Setup Start"></div>
+      <span class="step-title">3. 라이선스 확인</span>
+      <div class="description">GNU General Public License를 확인하고 <strong>[Next]</strong>를 클릭합니다.</div>
+      <div class="img-box"><img src="git_2.png" alt="License"></div>
     </div>
 
     <div class="step-item">
-      <span class="step-title">4. 설치 위치 지정</span>
-      <div class="description">기본 경로를 확인하고 <strong>[Next]</strong>를 클릭합니다.</div>
-      <div class="img-box"><img src="git_3.png" alt="Select Destination"></div>
+      <span class="step-title">4. 설치 경로 선택</span>
+      <div class="description">기본 설치 경로(<code>C:\Program Files\Git</code>)를 확인하고 <strong>[Next]</strong>를 클릭합니다.</div>
+      <div class="img-box"><img src="git_3.png" alt="Path"></div>
     </div>
 
     <div class="step-item">
-      <span class="step-title">5. 구성 요소 선택</span>
-      <div class="description">Windows 터미널에 Git Bash 프로필을 추가하려면 <strong>Add a Git Bash Profile to Windows Terminal</strong>을 선택하고 <strong>[Next]</strong>를 클릭합니다.</div>
-      <div class="img-box"><img src="git4.png" alt="Select Components"></div>
+      <span class="step-title">5. 구성 요소 선택 (Select Components)</span>
+      <div class="description"><strong>Add a Git Bash Profile to Windows Terminal</strong>을 체크하여 윈도우 터미널 호환성을 확보합니다.</div>
+      <div class="img-box"><img src="git4.png" alt="Components"></div>
     </div>
 
     <div class="step-item">
       <span class="step-title">6. 시작 메뉴 폴더 설정</span>
-      <div class="description"><strong>[Next]</strong>를 클릭합니다.</div>
-      <div class="img-box"><img src="git5.png" alt="Start Menu Folder"></div>
+      <div class="description">시작 메뉴에 생성될 폴더 이름을 확인하고 <strong>[Next]</strong>를 클릭합니다.</div>
+      <div class="img-box"><img src="git5.png" alt="Start Menu"></div>
     </div>
 
     <div class="step-item">
-      <span class="step-title">7. 기본 에디터 선택</span>
-      <div class="description">사용하고자 하는 에디터를 선택합니다. Visual Studio Code를 사용한다면 <strong>[Use Visual Studio Code as Git’s default editor]</strong>를 선택합니다.</div>
-      <div class="img-box"><img src="git6.png" alt="Default Editor"></div>
+      <span class="step-title">7. 기본 에디터 선택 (Choosing the default editor)</span>
+      <div class="description">Git 메시지 작성 시 사용할 도구를 선택합니다. VS Code 사용 시 <strong>Use Visual Studio Code as Git's default editor</strong>를 권장합니다.</div>
+      <div class="img-box"><img src="git6.png" alt="Editor"></div>
     </div>
 
     <div class="step-item">
-      <span class="step-title">8. 기본 브랜치 이름 설정</span>
-      <div class="option-box">
-        <span class="option-title">Adjusting the name of the initial branch</span>
-        <ul>
-          <li><strong>Let Git decide:</strong> 기본 브랜치명으로 <code>master</code> 사용</li>
-          <li><strong>Override the default branch name for new repositories:</strong> <code>main</code> 등 사용자가 지정한 이름 사용</li>
-        </ul>
-      </div>
-      <div class="img-box"><img src="9F3BF152-0FF3-4006-B2D5-F4620ABE9074.png" alt="Branch Naming"></div>
-    </div>
-
-    <div class="step-item">
-      <span class="step-title">9. ‘git pull’ 기본 동작 설정</span>
-      <div class="description">원격 저장소의 내용을 가져올 때의 합치기 방식을 결정합니다.</div>
+      <span class="step-title">8. 초기 브랜치 이름 설정 (Initial branch name)</span>
       <div class="option-box">
         <ul>
-          <li><strong>Default (Fast-forward or merge):</strong> 일반적인 방식. 수정 사항이 없으면 최신화(FF), 양쪽 모두 수정 시 병합 커밋 생성(Merge).</li>
-          <li><strong>Rebase:</strong> 내 작업을 잠시 떼어놓고 서버 최신 코드 위에 다시 쌓아 히스토리를 한 줄로 관리.</li>
-          <li><strong>Only ever fast-forward:</strong> 내 수정 사항이 없을 때만 pull 허용 (가장 보수적/안전).</li>
+          <li><strong>Let Git decide:</strong> 기존 방식인 <code>master</code> 사용</li>
+          <li><strong>Override the default branch name:</strong> 최신 표준인 <code>main</code> 등 지정 이름 사용</li>
         </ul>
       </div>
-      <div class="img-box"><img src="92642DBB-1EB9-46B4-9809-8424AFEB44B8.png" alt="Pull Behavior"></div>
+      <div class="img-box"><img src="9F3BF152-0FF3-4006-A1D8-6705D2D68252.png" alt="Branch"></div>
     </div>
 
     <div class="step-item">
-      <div class="description">이후 과정은 기본 권장 설정을 유지하며 <strong>[Next]</strong>를 클릭하여 설치를 완료합니다.</div>
+      <span class="step-title">9. PATH 환경 변수 설정 (Adjusting your PATH)</span>
+      <div class="description"><strong>Git from the command line and also from 3rd-party software</strong>를 선택하여 다른 툴과의 호환성을 높입니다.</div>
+    </div>
+
+    <div class="step-item">
+      <span class="step-title">10. SSH 실행 도구 선택 (SSH executable)</span>
+      <div class="description"><strong>Use bundled OpenSSH</strong>를 선택하여 내장된 보안 도구를 사용합니다.</div>
+    </div>
+
+    <div class="step-item">
+      <span class="step-title">11. HTTPS 연결 라이브러리 (HTTPS transport backend)</span>
+      <div class="description"><strong>Use the OpenSSL library</strong>를 선택하여 범용적인 보안 라이브러리를 사용합니다.</div>
+    </div>
+
+    <div class="step-item">
+      <span class="step-title">12. 줄바꿈 방식 설정 (Line ending conversions)</span>
+      <div class="option-box">
+        <strong>Checkout Windows-style, commit Unix-style:</strong> 윈도우와 리눅스 협업 시 줄바꿈 문자를 자동으로 변환해주는 설정입니다.
+      </div>
+    </div>
+
+    <div class="step-item">
+      <span class="step-title">13. 터미널 에뮬레이터 설정 (Terminal emulator)</span>
+      <div class="description"><strong>Use MinTTY</strong>를 선택하여 텍스트 가독성이 좋은 전용 창을 사용합니다.</div>
+    </div>
+
+    <div class="step-item">
+      <span class="step-title">14. git pull 기본 동작 설정 (Default behavior of ‘git pull’)</span>
+      <div class="option-box">
+        <ul>
+          <li><strong>Default (Fast-forward or merge):</strong> 필요 시 병합 커밋 자동 생성</li>
+          <li><strong>Rebase:</strong> 히스토리를 직선으로 유지 (중급자 이상 권장)</li>
+          <li><strong>Only ever fast-forward:</strong> 충돌 방지를 위해 수정 사항 없을 때만 pull 허용</li>
+        </ul>
+      </div>
+      <div class="img-box"><img src="92642DBB-1EB9-46B4-9809-8424AFEB44B8.png" alt="Pull"></div>
+    </div>
+
+    <div class="step-item">
+      <span class="step-title">15. 자격 증명 헬퍼 (Credential helper)</span>
+      <div class="description"><strong>Git Credential Manager</strong>를 사용하여 GitHub 로그인을 안전하고 편리하게 관리합니다.</div>
+    </div>
+
+    <div class="step-item">
+      <span class="step-title">16. 추가 옵션 설정 (Extra options)</span>
+      <div class="description"><strong>Enable file system caching</strong>을 체크하여 파일 처리 속도를 향상시킵니다.</div>
+    </div>
+
+    <div class="step-item" style="border-bottom: none;">
+      <span class="step-title">17. 설치 완료</span>
+      <div class="description"><strong>[Install]</strong>을 클릭하여 최종 설치를 진행합니다.</div>
     </div>
   </div>
 </body>
