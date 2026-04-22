@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Linux - OpenJDK 17, OpenJDK 21 설치</title>
+  <style>
+    :root {
+      --java-orange: #f89820;
+      --java-blue: #5382a1;
+      --bg-color: #f8f9fa;
+      --text-main: #333;
+      --container-bg: #ffffff;
+      --code-bg: #1e1e1e;
+      --code-text: #d4d4d4;
+      --border-color: #dee2e6;
+    }
+    body {
+      font-family: 'Segoe UI', 'Apple SD Gothic Neo', sans-serif;
+      line-height: 1.7;
+      color: var(--text-main);
+      background-color: var(--bg-color);
+      display: flex;
+      justify-content: center;
+      padding: 40px 20px;
+      margin: 0;
+    }
+    .container {
+      max-width: 900px;
+      width: 100%;
+      background: var(--container-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 40px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+    h1 {
+      font-size: 2rem;
+      color: #000;
+      border-bottom: 3px solid var(--java-orange);
+      padding-bottom: 10px;
+      margin-top: 0;
+    }
+    h2 {
+      font-size: 1.5rem;
+      color: var(--java-blue);
+      margin-top: 40px;
+      border-left: 5px solid var(--java-orange);
+      padding-left: 15px;
+      background: #fdfaf6;
+    }
+    h3 {
+      font-size: 1.25rem;
+      color: #333;
+      margin-top: 30px;
+      padding-bottom: 5px;
+      border-bottom: 1px solid var(--border-color);
+    }
+    .info-box {
+      background: #eef7ff;
+      padding: 15px;
+      border-radius: 6px;
+      margin: 20px 0;
+      font-size: 0.95rem;
+      border-left: 4px solid var(--java-blue);
+    }
+    pre {
+      background-color: var(--code-bg);
+      color: var(--code-text);
+      padding: 18px;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-family: 'Consolas', 'Monaco', monospace;
+      font-size: 0.9rem;
+      margin: 15px 0;
+    }
+    code {
+      background-color: #f1f1f1;
+      padding: 2px 5px;
+      border-radius: 4px;
+      color: #d63384;
+    }
+    pre code {
+      background: none;
+      color: inherit;
+      padding: 0;
+    }
+    ul, ol {
+      padding-left: 25px;
+    }
+    li {
+      margin-bottom: 12px;
+    }
+    strong {
+      color: #000;
+    }
+    .comment {
+      color: #6a9955;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Linux - OpenJDK 17, OpenJDK 21 설치</h1>
+    
+    <h2>1. Java 설치</h2>
+    <p>터미널에서 다음 명령어를 입력하여 OpenJDK를 설치합니다.</p>
+    
+    <h3>OpenJDK 17 설치</h3>
+    <pre><code><span class="comment"># 1. 설치 가능한 OpenJDK 17 버전 확인</span>
+sudo dnf search java-17-openjdk*
+
+<span class="comment"># 2. OpenJDK 17 설치</span>
+sudo dnf install java-17-openjdk-devel -y</code></pre>
+
+    <h3>OpenJDK 21 설치</h3>
+    <pre><code><span class="comment"># 1. 설치 가능한 OpenJDK 21 버전 확인</span>
+sudo dnf search java-21-openjdk*
+
+<span class="comment"># 2. OpenJDK 21 설치</span>
+sudo dnf install java-21-openjdk-devel -y</code></pre>
+
+    <h2>2. Java 버전 전환 및 관리 (Alternatives)</h2>
+    <div class="info-box">
+      <strong>alternatives :</strong> Rocky Linux 및 RHEL 계열 리눅스에서 시스템에 설치된 여러 버전의 동일한 프로그램 중에서, 기본적으로 사용할 버전을 선택하고 관리하는 시스템 유틸리티입니다.
+    </div>
+
+    <pre><code><span class="comment"># 1. 설치된 Java 버전 목록 확인 및 선택</span>
+sudo alternatives --config java
+<span class="comment"># 1, 2, 3... 번호를 입력하여 기본 설정 변경 가능</span>
+
+<span class="comment"># 2. 설치된 javac(컴파일러) 버전 목록 확인 및 선택</span>
+sudo alternatives --config javac</code></pre>
+
+    <h2>3. JAVA_HOME 환경 변수 추가</h2>
+    <p>시스템 전역에서 Java 경로를 인식할 수 있도록 <code>java.sh</code> 파일을 생성하여 설정합니다.</p>
+    
+    <pre><code><span class="comment"># 1. java.sh 파일 생성 및 작성</span>
+sudo tee /etc/profile.d/java.sh <<EOF
+<span class="comment"># 현재 설정된 java 실행 파일의 실제 경로를 찾아 JAVA_HOME 변수로 설정</span>
+export JAVA_HOME=$(readlink -f /usr/bin/java | sed "s:/bin/java::")
+export PATH=\$JAVA_HOME/bin:\$PATH
+export CLASSPATH=.:\$JAVA_HOME/lib/tools.jar
+EOF
+
+<span class="comment"># 2. 설정 반영</span>
+source /etc/profile.d/java.sh</code></pre>
+
+    <div class="info-box">
+      <strong>명령어 참고:</strong><br>
+      - <code>tee</code>: 표준 입력을 받아 화면과 파일에 동시에 출력합니다.<br>
+      - <code>&lt;&lt;EOF</code>: EOF 문구가 나올 때까지의 내용을 입력으로 전달합니다.
+    </div>
+
+    <h2>4. java.sh 에 alias 설정</h2>
+    <p>필요에 따라 Java 버전을 즉시 전환할 수 있도록 별칭(alias)을 추가합니다.</p>
+    <pre><code><span class="comment"># 설정 파일 열기</span>
+sudo vi /etc/profile.d/java.sh
+
+<span class="comment"># 하단에 아래 내용 추가</span>
+<span class="comment"># 1. Java 17 환경 설정 alias</span>
+alias setJava17='export JAVA_HOME=/usr/lib/jvm/java-17-openjdk && export PATH=\$JAVA_HOME/bin:\$PATH && echo "Java 17 Activated"'
+
+<span class="comment"># 2. Java 21 환경 설정 alias</span>
+alias setJava21='export JAVA_HOME=/usr/lib/jvm/java-21-openjdk && export PATH=\$JAVA_HOME/bin:\$PATH && echo "Java 21 Activated"'</code></pre>
+
+    <div class="info-box">
+      설정 후 <code>source /etc/profile.d/java.sh</code>를 실행하거나 터미널을 재시작하면 <code>setJava17</code> 또는 <code>setJava21</code> 명령어로 버전을 빠르게 전환할 수 있습니다.
+    </div>
+  </div>
+</body>
+</html>
