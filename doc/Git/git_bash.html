@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Git - GitHub 계정 연동 및 한글 깨짐 해결</title>
+  <style>
+    :root {
+      --git-orange: #f05032;
+      --github-dark: #24292e;
+      --bg-color: #f6f8fa;
+      --text-main: #24292f;
+      --container-bg: #ffffff;
+      --code-bg: #1e1e1e;
+      --code-text: #d4d4d4;
+      --border-color: #d0d7de;
+      --accent-blue: #0969da;
+    }
+    body {
+      font-family: 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+      line-height: 1.7;
+      color: var(--text-main);
+      background-color: var(--bg-color);
+      display: flex;
+      justify-content: center;
+      padding: 40px 20px;
+      margin: 0;
+    }
+    .container {
+      max-width: 900px;
+      width: 100%;
+      background: var(--container-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 40px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    }
+    h1 {
+      font-size: 1.8rem;
+      color: var(--github-dark);
+      border-bottom: 3px solid var(--git-orange);
+      padding-bottom: 12px;
+      margin-top: 0;
+    }
+    h2 {
+      font-size: 1.4rem;
+      color: var(--accent-blue);
+      margin-top: 40px;
+      border-left: 6px solid var(--accent-blue);
+      padding-left: 15px;
+      background: #f0f7ff;
+    }
+    .exec-box {
+      background: #fff9db;
+      border: 1px solid #fab005;
+      padding: 10px 15px;
+      border-radius: 6px;
+      margin: 20px 0;
+      font-weight: bold;
+      display: inline-block;
+    }
+    pre {
+      background-color: var(--code-bg);
+      color: var(--code-text);
+      padding: 18px;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-family: 'Cascadia Code', 'Consolas', 'Monaco', monospace;
+      font-size: 0.9rem;
+      margin: 15px 0;
+    }
+    code {
+      background-color: #f1f1f1;
+      padding: 2px 5px;
+      border-radius: 4px;
+      color: #cf222e;
+    }
+    pre code {
+      background: none;
+      color: inherit;
+      padding: 0;
+    }
+    ul, ol {
+      padding-left: 25px;
+    }
+    li {
+      margin-bottom: 12px;
+    }
+    .comment {
+      color: #6a9955;
+      font-style: italic;
+    }
+    .tip-box {
+      background: #f8f9fa;
+      border: 1px solid var(--border-color);
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 10px;
+      font-size: 0.95rem;
+    }
+    strong {
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Git - GitHub 계정 연동, 한글 깨짐 해결</h1>
+    
+    <h2>1. Git - GitHub 계정 연동</h2>
+    <div class="exec-box">"Git Bash" 실행</div>
+    
+    <ol>
+      <li>
+        <strong>GitHub 계정 설정</strong>
+        <p>Git Bash에서 다음과 같이 입력하여 전역 사용자 정보를 설정합니다.</p>
+        <pre><code><span class="comment"># 본인의 이름(닉네임) 설정</span>
+git config --global user.name "본인의 닉네임"
+
+<span class="comment"># GitHub 가입 시 사용한 이메일 설정</span>
+git config --global user.email "GitHub 가입 이메일"</code></pre>
+      </li>
+      <li>
+        <strong>리포지토리 연동</strong>
+        <p>기존 리포지토리가 있다면 클론(Clone)하여 연동하고, 없다면 생성 후 진행합니다.</p>
+        <pre><code>git clone https://github.com/“repository 이름”</code></pre>
+      </li>
+      <li>
+        <strong>브라우저 인증</strong>
+        <p>명령어 입력 후 나타나는 <code>Sign in with your browser</code> 버튼을 클릭하여 로그인하면 연동이 완료됩니다.</p>
+      </li>
+    </ol>
+
+    <h2>2. 터미널에서 한글 깨짐 방지</h2>
+    <p>Git Bash에서 한글이 올바르게 표시되도록 다음 명령어들을 입력합니다.</p>
+
+    <ol>
+      <li>
+        <strong>파일명 깨짐 예방</strong>
+        <pre><code>git config --global core.quotepath false</code></pre>
+      </li>
+      <li>
+        <strong>출력 인코딩 UTF-8 설정</strong>
+        <pre><code>export LC_ALL=ko_KR.UTF-8 
+export LANG=ko_KR.UTF-8</code></pre>
+      </li>
+      <li>
+        <strong>Git Bash 화면 설정 (가독성 업그레이드)</strong>
+        <div class="tip-box">
+          <ul>
+            <li><strong>폰트 변경:</strong> Git Bash 창에서 마우스 오른쪽 버튼 클릭 > <code>Options</code> > <code>Text</code> > <code>Font</code> 버튼 클릭 후 <strong>'Cascadia Code'</strong>와 같은 개발용 폰트로 변경하면 한글/영문 가독성이 좋아집니다.</li>
+            <li><strong>투명도 조절:</strong> <code>Window</code> 메뉴에서 <code>Transparency</code>를 조절하면 작업 환경을 커스터마이징할 수 있습니다.</li>
+          </ul>
+        </div>
+      </li>
+    </ol>
+  </div>
+</body>
+</html>
