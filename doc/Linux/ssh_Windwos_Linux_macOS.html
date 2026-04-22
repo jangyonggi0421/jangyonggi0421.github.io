@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SSH - Windows, Linux 에서 macOS 접속</title>
+  <style>
+    :root {
+      --primary-indigo: #5c6bc0;
+      --secondary-dark: #263238;
+      --bg-color: #f1f3f4;
+      --text-main: #333;
+      --container-bg: #ffffff;
+      --code-bg: #1e1e1e;
+      --code-text: #d4d4d4;
+      --border-color: #cfd8dc;
+      --accent-teal: #009688;
+    }
+    body {
+      font-family: 'Segoe UI', 'Apple SD Gothic Neo', sans-serif;
+      line-height: 1.7;
+      color: var(--text-main);
+      background-color: var(--bg-color);
+      display: flex;
+      justify-content: center;
+      padding: 40px 20px;
+      margin: 0;
+    }
+    .container {
+      max-width: 900px;
+      width: 100%;
+      background: var(--container-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 40px;
+      box-shadow: 0 4px 25px rgba(0,0,0,0.1);
+    }
+    h1 {
+      font-size: 1.8rem;
+      color: var(--secondary-dark);
+      border-bottom: 3px solid var(--primary-indigo);
+      padding-bottom: 12px;
+      margin-top: 0;
+    }
+    h2 {
+      font-size: 1.5rem;
+      color: var(--primary-indigo);
+      margin-top: 40px;
+      border-left: 6px solid var(--primary-indigo);
+      padding-left: 15px;
+      background: #f8f9ff;
+    }
+    h3 {
+      font-size: 1.2rem;
+      color: var(--secondary-dark);
+      margin-top: 30px;
+      padding: 8px 0;
+      border-bottom: 1px dashed var(--border-color);
+    }
+    .env-info {
+      background: #ffffff;
+      border: 1px solid var(--primary-indigo);
+      padding: 15px;
+      border-radius: 8px;
+      margin: 20px 0;
+      font-size: 0.95rem;
+    }
+    .launchctl-box {
+      background: #fff8e1;
+      border-left: 4px solid #ffca28;
+      padding: 15px;
+      margin: 20px 0;
+    }
+    pre {
+      background-color: var(--code-bg);
+      color: var(--code-text);
+      padding: 18px;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-family: 'Consolas', 'Monaco', monospace;
+      font-size: 0.9rem;
+      margin: 15px 0;
+    }
+    code {
+      background-color: #eee;
+      padding: 2px 5px;
+      border-radius: 4px;
+      color: #c2185b;
+      font-weight: bold;
+    }
+    pre code {
+      background: none;
+      color: inherit;
+      padding: 0;
+      font-weight: normal;
+    }
+    ul, ol {
+      padding-left: 25px;
+    }
+    li {
+      margin-bottom: 10px;
+    }
+    .platform-tag {
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: 20px;
+      background: var(--accent-teal);
+      color: white;
+      font-size: 0.8rem;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>SSH - Windows, Linux 에서 macOS 접속</h1>
+    
+    <div class="env-info">
+      <strong>접속 환경 (OS):</strong>
+      <ul>
+        <li>Windows 11 Pro</li>
+        <li>Rocky Linux 9.7 (5.14.0-611.5.1.el9_7.x86_64) >> macOS Tahoe 26.4</li>
+      </ul>
+    </div>
+
+    <div class="launchctl-box">
+      <strong>macOS</strong>
+      <p>macOS에는 Linux의 <code>systemctl</code>에 해당하는 명령어가 없으며, <code>launchctl</code>이 그 역할을 대체합니다.</p>
+      <ul>
+        <li><strong>서비스 상태 확인:</strong> <code>sudo launchctl list</code> (목록에서 '-'는 실행 중이 아님을 의미)</li>
+        <li><strong>서비스 시작:</strong> <code>sudo launchctl start</code></li>
+        <li><strong>서비스 중지:</strong> <code>sudo launchctl stop</code></li>
+      </ul>
+    </div>
+
+    <h2>공통 설정</h2>
+    
+    <h3>1단계. macOS SSH 설정</h3>
+    <pre><code># 1. sshd_config 파일 열기
+# vi /etc/ssh/sshd_config
+
+# 2. 설정 변경 (i 키로 입력 모드 전환)
+# - #PubkeyAuthentication yes 에서 주석 제거 (공개키 인증 활성화)
+# - PasswordAuthentication no (비밀번호 로그인 비활성화)
+# - #AuthorizedKeysFile .ssh/authorized_keys 주석 제거
+
+# ESC 입력 후 :wq 로 저장</code></pre>
+
+    <h3>2단계. SSH 인증키 생성 (Windows, Linux 공통)</h3>
+    <pre><code># 1. SSH 인증키 생성 (RSA 4096비트)
+ssh-keygen -t rsa -b 4096
+
+# -t: 키 타입(RSA)
+# -b: 비트 길이(4096)
+# 프롬프트 안내:
+# - 파일 경로 지정: Enter (기본값)
+# - Passphrase(암호): Enter (공백 가능)
+
+# 2. 생성된 키 파일 확인
+ls -al
+# id_rsa (비공개 키 - 노출 금지)
+# id_rsa.pub (공개 키)</code></pre>
+
+    <h2>플랫폼별 키 등록</h2>
+
+    <div class="platform-tag">Windows (PowerShell)</div>
+    <h3>SSH 인증키 등록</h3>
+    <pre><code># 1. 생성된 공개키(.pub) 내용을 클립보드에 복사
+PS > Get-Content $env:USERPROFILE\.ssh\&lt;키 이름&gt;.pub | Set-Clipboard
+
+# 2. 기존 비밀번호 방식으로 접속하여 공개키 등록
+PS > ssh &lt;User&gt;@&lt;ip주소&gt;
+
+# 3. 서버 접속 후 클립보드 내용 붙여넣기
+echo "복사한 키 내용" >> ~/.ssh/authorized_keys
+exit</code></pre>
+
+    <div class="platform-tag">Linux (Terminal)</div>
+    <h3>SSH 인증키 등록 및 접속</h3>
+    <pre><code># 1. 공개키 등록 (ssh-copy-id 도구 사용)
+ssh-copy-id &lt;User&gt;@&lt;ip주소&gt;
+# 패스워드 입력 후 등록 완료
+
+# 2. SSH 접속 테스트
+ssh &lt;User&gt;@&lt;ip주소&gt;
+# 키 생성 시 암호를 설정하지 않았다면 즉시 로그인됨</code></pre>
+
+    <h2>최종 반영 및 접속</h2>
+    
+    <h3>macOS 서비스 재시작</h3>
+    <pre><code># 설정을 반영하기 위해 SSH 서비스 재시작
+sudo launchctl stop sshd
+sudo launchctl start sshd</code></pre>
+
+    <h3>최종 접속 명령어</h3>
+    <pre><code>ssh [원격서버계정]@[원격지IP]
+# 예) ssh user@123.123.11.1</code></pre>
+  </div>
+</body>
+</html>
