@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Git 명령어 및 저장소 관리</title>
+  <style>
+    :root {
+      --git-orange: #f05032;
+      --git-blue: #477dca;
+      --bg-color: #f8f9fa;
+      --text-main: #333;
+      --container-bg: #ffffff;
+      --code-bg: #1e1e1e;
+      --code-text: #d4d4d4;
+      --border-color: #dee2e6;
+    }
+    body {
+      font-family: 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+      line-height: 1.7;
+      color: var(--text-main);
+      background-color: var(--bg-color);
+      display: flex;
+      justify-content: center;
+      padding: 40px 20px;
+      margin: 0;
+    }
+    .container {
+      max-width: 900px;
+      width: 100%;
+      background: var(--container-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 40px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+    h1 {
+      font-size: 1.8rem;
+      color: #000;
+      border-bottom: 3px solid var(--git-orange);
+      padding-bottom: 10px;
+      margin-top: 0;
+    }
+    h2 {
+      font-size: 1.5rem;
+      color: var(--git-blue);
+      margin-top: 40px;
+      border-left: 6px solid var(--git-orange);
+      padding-left: 15px;
+      background: #fdfaf6;
+    }
+    h3 {
+      font-size: 1.2rem;
+      color: #333;
+      margin-top: 30px;
+      padding-bottom: 5px;
+      border-bottom: 1px solid var(--border-color);
+    }
+    .concept-box {
+      background: #f0f7ff;
+      padding: 20px;
+      border-radius: 8px;
+      border-left: 4px solid var(--git-blue);
+      margin: 20px 0;
+    }
+    .workflow-steps {
+      display: flex;
+      justify-content: space-between;
+      background: #333;
+      color: white;
+      padding: 15px;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 0.9rem;
+      margin: 20px 0;
+    }
+    .workflow-steps span:not(:last-child)::after {
+      content: " > ";
+      color: var(--git-orange);
+      margin-left: 10px;
+    }
+    pre {
+      background-color: var(--code-bg);
+      color: var(--code-text);
+      padding: 18px;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-family: 'Consolas', 'Monaco', monospace;
+      font-size: 0.9rem;
+      margin: 15px 0;
+    }
+    code {
+      background-color: #f1f1f1;
+      padding: 2px 5px;
+      border-radius: 4px;
+      color: #d63384;
+    }
+    pre code {
+      background: none;
+      color: inherit;
+      padding: 0;
+    }
+    .comment {
+      color: #6a9955;
+      font-style: italic;
+    }
+    .tip-box {
+      background: #fff9db;
+      border: 1px solid #fab005;
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 20px;
+    }
+    strong {
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Git 명령어, 저장소 변경 등</h1>
+    
+    <h2>1. 주요 개념 및 명령어</h2>
+    <div class="concept-box">
+      <strong>branch :</strong> 기존 코드에 영향을 주지 않고 독립적으로 작업할 수 있는 가상 공간입니다. A라는 브랜치에서 작업을 진행하며 코드를 수정 및 삭제해도 main 브랜치는 유지되며, 작업 완료 후 main 브랜치에 병합(Merge)할 수 있습니다.
+    </div>
+
+    <pre><code><span class="comment"># 현재 브랜치 확인 (* 표시가 현재 위치)</span>
+git branch 
+
+<span class="comment"># 새로운 브랜치 생성 (생성만 하고 이동하지 않음)</span>
+git branch &lt;새로운 브랜치명&gt;
+
+<span class="comment"># 해당 브랜치로 이동</span>
+git switch &lt;브랜치명&gt;  <span class="comment"># 또는 git checkout &lt;브랜치명&gt;</span>
+
+<span class="comment"># 새로운 브랜치 생성과 동시에 이동</span>
+git switch -c &lt;새로운 브랜치명&gt; 
+
+<span class="comment"># 다른 브랜치의 내용을 현재 브랜치로 합침</span>
+git merge &lt;브랜치명&gt; 
+
+<span class="comment"># 작업이 끝난 브랜치 삭제</span>
+git branch -d &lt;브랜치명&gt;</code></pre>
+
+    <h3>작업 과정 (Workflow)</h3>
+    <div class="workflow-steps">
+      <span>변경사항(Worktree)</span>
+      <span>스테이징(Staging)</span>
+      <span>커밋(Commit)</span>
+      <span>서버 전송(Push)</span>
+    </div>
+
+    <pre><code><span class="comment"># 현재 폴더를 Git 저장소로 초기화 (최초 1회)</span>
+git init
+
+<span class="comment"># 변경된 파일을 스테이징 영역에 추가</span>
+git add .
+
+<span class="comment"># 메시지와 함께 변경사항 기록</span>
+git commit -m "메시지 내용"
+
+<span class="comment"># 원격 저장소(GitHub 등)로 업로드</span>
+git push origin &lt;브랜치명&gt;</code></pre>
+
+    <h2>2. 실무 예시 1: 브랜치 작업 및 병합</h2>
+    
+    <h3>1단계: 새로운 기능 개발 준비</h3>
+    <pre><code><span class="comment"># 'test'라는 브랜치를 만들고 바로 이동</span>
+git switch -c test</code></pre>
+
+    <h3>2단계: 파일 수정 및 기록 (커밋)</h3>
+    <pre><code><span class="comment"># 파일 수정 후 스테이징</span>
+git add .
+
+<span class="comment"># 새로운 브랜치에 기록 남기기</span>
+git commit -m "기능 구현 완료"</code></pre>
+
+    <h3>3단계: 메인 브랜치로 돌아가기</h3>
+    <p>결과를 합치기 위해 원래의 main 브랜치로 이동합니다. (합치기 전까지 main에는 test의 수정 내용이 보이지 않습니다.)</p>
+    <pre><code>git switch main</code></pre>
+
+    <h3>4단계: 합치기 (Merge)</h3>
+    <p>test에서 작업한 내용을 main으로 가져옵니다. 이제 main 브랜치에서도 신규 기능이 나타납니다.</p>
+    <pre><code>git merge test</code></pre>
+
+    <h3>5단계: 브랜치 삭제 (정리)</h3>
+    <pre><code>git branch -d test</code></pre>
+
+    <div class="tip-box">
+      <strong>Tip. GitHub 연동 시 :</strong><br>
+      로컬의 test 브랜치를 서버(origin)에도 올리고 싶다면 push 시 이름을 지정합니다.<br>
+      <code>git push origin test</code>
+    </div>
+
+    <h2>3. 실무 예시 2: 최신 코드 동기화</h2>
+    <pre><code><span class="comment"># 1. 서버의 최신 코드 가져오기</span>
+git pull
+
+<span class="comment"># 2. 코드 수정 및 작업 진행...</span>
+<span class="comment"># 3. 이후 add -> commit -> push 반복</span></code></pre>
+  </div>
+</body>
+</html>
