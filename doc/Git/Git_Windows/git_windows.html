@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Git 설치(Windows)</title>
+  <style>
+    :root {
+      --git-orange: #f05032;
+      --secondary-dark: #3e2723;
+      --bg-color: #fdfdfd;
+      --text-main: #333;
+      --container-bg: #ffffff;
+      --code-bg: #1e1e1e;
+      --code-text: #d4d4d4;
+      --border-color: #e0e0e0;
+      --highlight-bg: #fff5f2;
+    }
+    body {
+      font-family: 'Segoe UI', 'Apple SD Gothic Neo', sans-serif;
+      line-height: 1.7;
+      color: var(--text-main);
+      background-color: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      padding: 40px 20px;
+      margin: 0;
+    }
+    .container {
+      max-width: 900px;
+      width: 100%;
+      background: var(--container-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 40px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+    h1 {
+      font-size: 2rem;
+      color: var(--secondary-dark);
+      border-bottom: 4px solid var(--git-orange);
+      padding-bottom: 10px;
+      margin-top: 0;
+    }
+    h2 {
+      font-size: 1.4rem;
+      color: var(--git-orange);
+      margin-top: 35px;
+      border-left: 6px solid var(--git-orange);
+      padding-left: 15px;
+    }
+    .step-item {
+      margin-bottom: 30px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #eee;
+    }
+    .step-title {
+      font-weight: bold;
+      font-size: 1.15rem;
+      color: #000;
+      margin-bottom: 10px;
+      display: block;
+    }
+    .description {
+      margin-left: 10px;
+      color: #555;
+    }
+    .option-box {
+      background: var(--highlight-bg);
+      padding: 15px;
+      border-radius: 8px;
+      margin: 10px 0;
+      border: 1px solid #ffccbc;
+    }
+    .option-title {
+      font-weight: bold;
+      color: #d84315;
+      display: block;
+      margin-bottom: 5px;
+    }
+    .img-box {
+      margin: 15px 0;
+      text-align: left;
+    }
+    .img-box img {
+      max-width: 100%;
+      height: auto;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    ul {
+      padding-left: 20px;
+    }
+    li {
+      margin-bottom: 8px;
+    }
+    code {
+      background-color: #f1f1f1;
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: #c62828;
+      font-family: 'Consolas', monospace;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Git 설치(Windows)</h1>
+    
+    <div class="step-item">
+      <span class="step-title">1. 다운로드</span>
+      <div class="description">
+        URL : <a href="https://git-scm.com/install/windows" target="_blank">https://git-scm.com/install/windows</a><br>
+        * <strong>Click here to download</strong> 클릭
+      </div>
+      <div class="img-box"><img src="git_1.png" alt="Download Page"></div>
+    </div>
+
+    <div class="step-item">
+      <span class="step-title">2. 실행</span>
+      <div class="description">다운로드 된 <code>Git-2.52.0-64-bit.exe</code> 파일을 실행합니다.</div>
+    </div>
+
+    <div class="step-item">
+      <span class="step-title">3. 시작</span>
+      <div class="description"><strong>[Next]</strong> 버튼을 클릭하여 설치를 시작합니다.</div>
+      <div class="img-box"><img src="git_2.png" alt="Setup Start"></div>
+    </div>
+
+    <div class="step-item">
+      <span class="step-title">4. 설치 위치 지정</span>
+      <div class="description">기본 경로를 확인하고 <strong>[Next]</strong>를 클릭합니다.</div>
+      <div class="img-box"><img src="git_3.png" alt="Select Destination"></div>
+    </div>
+
+    <div class="step-item">
+      <span class="step-title">5. 구성 요소 선택</span>
+      <div class="description">Windows 터미널에 Git Bash 프로필을 추가하려면 <strong>Add a Git Bash Profile to Windows Terminal</strong>을 선택하고 <strong>[Next]</strong>를 클릭합니다.</div>
+      <div class="img-box"><img src="git4.png" alt="Select Components"></div>
+    </div>
+
+    <div class="step-item">
+      <span class="step-title">6. 시작 메뉴 폴더 설정</span>
+      <div class="description"><strong>[Next]</strong>를 클릭합니다.</div>
+      <div class="img-box"><img src="git5.png" alt="Start Menu Folder"></div>
+    </div>
+
+    <div class="step-item">
+      <span class="step-title">7. 기본 에디터 선택</span>
+      <div class="description">사용하고자 하는 에디터를 선택합니다. Visual Studio Code를 사용한다면 <strong>[Use Visual Studio Code as Git’s default editor]</strong>를 선택합니다.</div>
+      <div class="img-box"><img src="git6.png" alt="Default Editor"></div>
+    </div>
+
+    <div class="step-item">
+      <span class="step-title">8. 기본 브랜치 이름 설정</span>
+      <div class="option-box">
+        <span class="option-title">Adjusting the name of the initial branch</span>
+        <ul>
+          <li><strong>Let Git decide:</strong> 기본 브랜치명으로 <code>master</code> 사용</li>
+          <li><strong>Override the default branch name for new repositories:</strong> <code>main</code> 등 사용자가 지정한 이름 사용</li>
+        </ul>
+      </div>
+      <div class="img-box"><img src="9F3BF152-0FF3-4006-A1D8-6705D2D68252.png" alt="Branch Naming"></div>
+    </div>
+
+    <div class="step-item">
+      <span class="step-title">9. ‘git pull’ 기본 동작 설정</span>
+      <div class="description">원격 저장소의 내용을 가져올 때의 합치기 방식을 결정합니다.</div>
+      <div class="option-box">
+        <ul>
+          <li><strong>Default (Fast-forward or merge):</strong> 일반적인 방식. 수정 사항이 없으면 최신화(FF), 양쪽 모두 수정 시 병합 커밋 생성(Merge).</li>
+          <li><strong>Rebase:</strong> 내 작업을 잠시 떼어놓고 서버 최신 코드 위에 다시 쌓아 히스토리를 한 줄로 관리.</li>
+          <li><strong>Only ever fast-forward:</strong> 내 수정 사항이 없을 때만 pull 허용 (가장 보수적/안전).</li>
+        </ul>
+      </div>
+      <div class="img-box"><img src="92642DBB-1EB9-46B4-9809-8424AFEB44B8.png" alt="Pull Behavior"></div>
+    </div>
+
+    <div class="step-item">
+      <div class="description">이후 과정은 기본 권장 설정을 유지하며 <strong>[Next]</strong>를 클릭하여 설치를 완료합니다.</div>
+    </div>
+  </div>
+</body>
+</html>
