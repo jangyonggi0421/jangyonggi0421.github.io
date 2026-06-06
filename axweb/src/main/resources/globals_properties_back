@@ -1,0 +1,58 @@
+
+#   globals.properties : 시스템 
+
+# ----------------------------------------------------------------------------------------------------------
+
+# 운영서버 타입(WINDOWS, UNIX)
+Globals.OsType = WINDOWS
+
+# G4C 연결용 IP (localhost)
+Globals.LocalIp = 127.0.0.1
+
+# DB서버 타입(mysql,oracle,altibase,tibero) - datasource 및 sqlMap 파일 지정에 사용됨
+Globals.DbType = hsql
+Globals.UserName=sa
+Globals.Password=
+
+# mysql
+#Globals.DriverClassName=net.sf.log4jdbc.DriverSpy
+#Globals.Url=jdbc:log4jdbc:mysql://127.0.0.1:3306/sht
+
+#oracle
+#Globals.DriverClassName=oracle.jdbc.driver.OracleDriver
+#Globals.Url=jdbc:oracle:thin:@127.0.0.1:1521:egovfrm
+
+#Altibase
+#Globals.DriverClassName=Altibase.jdbc.driver.AltibaseDriver
+#Globals.Url=jdbc:Altibase://127.0.0.1:1721/egovfrm?encoding=UTF-8
+
+#Tibero
+#Globals.DriverClassName=com.tmax.tibero.jdbc.TbDriver
+#Globals.Url=jdbc:tibero:thin:@127.0.0.1:1821:egovfrm
+
+#cubrid
+#Globals.DriverClassName=cubrid.jdbc.driver.CUBRIDDriver
+#Globals.Url=jdbc:cubrid:127.0.0.1:33000:sht:::?charset=utf-8
+
+#Hsql - local hssql 사용시에 적용
+Globals.DriverClassName=net.sf.log4jdbc.DriverSpy
+Globals.Url=jdbc:log4jdbc:hsqldb:hsql://127.0.0.1/sampledb
+
+# MainPage Setting
+Globals.MainPage = /cmm/main/mainPage.do
+
+# File Upload Settings for Tomcat 11
+# 파일 확장자 화이트리스트(허용목록) : 파일 확장자를 (.)과 함께 이어서 사용하며 (.)록 시작한다.
+Globals.fileUpload.Extensions = .gif,.jpg,.jpeg,.png,.xls,.xlsx
+Globals.fileUpload.maxFileSize = 104857600
+Globals.fileUpload.maxRequestSize = 104857600
+Globals.fileUpload.maxFileCount = 1000
+Globals.fileUpload.fileSizeThreshold = 1048576
+Globals.fileStorePath = /upload/sht
+
+# BBS File Attach Size
+Globals.posblAtchFileSize = 10485760
+
+# File ID 암호화 키
+# 주의 : 반드시 기본값 "egovframe"을 다른것으로 변경하여 사용하시기 바랍니다.
+Globals.File.algorithmKey = egovframe
